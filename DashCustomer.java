@@ -4,7 +4,7 @@
 
 //Fields
 
-class Client{
+public class DashCustomer{
     private String userId;
 
     private String firstName;
@@ -15,13 +15,15 @@ class Client{
 
     private String email;
 
+    private String password;
+
     private Address a;
 
     private boolean activateAccount;
 
     private int pNum;
 
-    public Client(){
+    public DashCustomer(){
         this.userId = " ";
 
         this.name = " ";
@@ -32,12 +34,26 @@ class Client{
 
     }
 
+    public DashCustomer(String userId, String firstName, String lastName, String email, boolean activateAccount){
+        this.userId = userId;
+
+        this.firstName = firstName;
+
+        this.lastName = lastName;
+        
+        this. email = email;
+
+        this.activateAccount = activateAccount;
+
+        
+    }
+
     public void setId(String userId){
         this.userId = userId;
     }
 
     public String getId(){
-        return this.userId;
+        return this.userId;         
     }
 
     public void setFname(String firstName){
@@ -57,7 +73,7 @@ class Client{
     }
 
     public String getName(){
-       this.name = getFname() + getLname();
+       this.name = getFname() + " " + getLname();
         return this.name;
     }
 
@@ -67,6 +83,14 @@ class Client{
 
     public String getEmail(){
         return this.email;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public String getPassword(){
+        return this.password;
     }
 
     public void setAccount(boolean activateAccount){
@@ -86,11 +110,9 @@ class Client{
     }
 
     public String toString(){
-        return "Client: " + this.getName() + "\n" + "Address: " + a.toString() + "\n" + "Account Activation: " + 
-                this.getAccount();
+        return "UserId: " + this.getId() + '\n' + "Client: " + this.getName() + '\n' + "Email: " + this.getEmail() +
+               '\n'+ "Status: " + this.getAccount();
     }
-
-
 
 
 }
@@ -104,7 +126,7 @@ class Address{
 
     private String city;
 
-    public void setStreeNum(int streetNumber){
+    public void setStreetNum(int streetNumber){
         this.streetNumber = streetNumber; 
     }
 
@@ -144,7 +166,7 @@ class Address{
     }
 
     public String toString(){
-        return "\nName: " + this.getStreetName() + "\n" + "House-Number: " + this.getStreetNum() + "\n" + 
+        return "\nStreetName: " + this.getStreetName() + "\n" + "House-Number: " + this.getStreetNum() + "\n" + 
                 "ZipCode: " + this.getZipCode() + "\n" + "City: " + this.getCity();
     }
 
