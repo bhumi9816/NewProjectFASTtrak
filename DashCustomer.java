@@ -4,7 +4,7 @@
 
 //Fields
 
-class Client{
+public class DashCustomer{
     private String userId;
 
     private String firstName;
@@ -21,7 +21,7 @@ class Client{
 
     private int pNum;
 
-    public Client(){
+    public DashCustomer(){
         this.userId = " ";
 
         this.name = " ";
@@ -32,12 +32,22 @@ class Client{
 
     }
 
+    public DashCustomer(String userId, String name, String email, boolean activateAccount){
+        this.userId = userId;
+
+        this.name = name;
+        
+        this. email = email;
+
+        this.activateAccount = activateAccount;
+    }
+
     public void setId(String userId){
         this.userId = userId;
     }
 
     public String getId(){
-        return this.userId;
+        return this.userId;         
     }
 
     public void setFname(String firstName){
@@ -84,13 +94,6 @@ class Client{
     public int getPhoneNum(){
         return this.pNum;
     }
-
-    public String toString(){
-        return "Client: " + this.getName() + "\n" + "Address: " + a.toString() + "\n" + "Account Activation: " + 
-                this.getAccount();
-    }
-
-
 
 
 }
