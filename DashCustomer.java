@@ -15,6 +15,8 @@ public class DashCustomer{
 
     private String email;
 
+    private String password;
+
     private Address a;
 
     private boolean activateAccount;
@@ -32,14 +34,18 @@ public class DashCustomer{
 
     }
 
-    public DashCustomer(String userId, String name, String email, boolean activateAccount){
+    public DashCustomer(String userId, String firstName, String lastName, String email, boolean activateAccount){
         this.userId = userId;
 
-        this.name = name;
+        this.firstName = firstName;
+
+        this.lastName = lastName;
         
         this. email = email;
 
         this.activateAccount = activateAccount;
+
+        
     }
 
     public void setId(String userId){
@@ -67,7 +73,7 @@ public class DashCustomer{
     }
 
     public String getName(){
-       this.name = getFname() + getLname();
+       this.name = getFname() + " " + getLname();
         return this.name;
     }
 
@@ -77,6 +83,14 @@ public class DashCustomer{
 
     public String getEmail(){
         return this.email;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public String getPassword(){
+        return this.password;
     }
 
     public void setAccount(boolean activateAccount){
@@ -95,6 +109,11 @@ public class DashCustomer{
         return this.pNum;
     }
 
+    public String toString(){
+        return "UserId: " + this.getId() + '\n' + "Client: " + this.getName() + '\n' + "Email: " + this.getEmail() +
+               '\n'+ "Status: " + this.getAccount();
+    }
+
 
 }
 
@@ -107,7 +126,7 @@ class Address{
 
     private String city;
 
-    public void setStreeNum(int streetNumber){
+    public void setStreetNum(int streetNumber){
         this.streetNumber = streetNumber; 
     }
 
@@ -147,7 +166,7 @@ class Address{
     }
 
     public String toString(){
-        return "\nName: " + this.getStreetName() + "\n" + "House-Number: " + this.getStreetNum() + "\n" + 
+        return "\nStreetName: " + this.getStreetName() + "\n" + "House-Number: " + this.getStreetNum() + "\n" + 
                 "ZipCode: " + this.getZipCode() + "\n" + "City: " + this.getCity();
     }
 
