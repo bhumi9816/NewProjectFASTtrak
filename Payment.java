@@ -3,26 +3,26 @@ import java.util.Date;
 
 public class Payment {
 	private String cardName;
-	private long cardNum;
-	private int expDate;
-	private int ccv;
+	private String cardNum;
+	private String expDate;
+	private String ccv;
 	private double acctBalance;
 	private Scanner myScanner = new Scanner(System.in);
 	
 	public Payment() {
 		cardName = "";
-		cardNum = 0000000000000000;
-		expDate = 000000;
-		ccv = 000;
+		cardNum = "";
+		expDate = "";
+		ccv = "";
 		acctBalance = 0.0;
 	}
 	
-	public Payment(String cardNameArg,long cardNumArg, int expDateArg,int ccvArg,float acctBalanceArg) {
+	public Payment(String cardNameArg,String cardNumArg, String expDateArg,String ccvArg) {
 		cardName = cardNameArg;
 		cardNum = cardNumArg;
 		expDate = expDateArg;
 		ccv = ccvArg;
-		acctBalance = acctBalanceArg;
+		acctBalance = 0.0;
 	}
 	
 	public void getCardInfo() {
@@ -33,6 +33,26 @@ public class Payment {
 //	public void setCardInfo() { 		I need to break this method up for better implimentation
 //		
 //	}
+	
+	public String getCardName() {
+		return cardName;
+	}
+	
+	public String getCardNum() {
+		return cardNum;
+	}
+	
+	public String getExpDate() {
+		return expDate;
+	}
+	
+	public String getCCV() {
+		return ccv;
+	}
+	
+	public double getAccountBalance() {
+		return acctBalance;
+	}
 	
 	public void setCardName() {
 		System.out.println("-Editing Card Name-");
@@ -45,7 +65,7 @@ public class Payment {
 	public void setCardNum() {
 		System.out.println("-Editing Card Num-");
 		System.out.println("Card Number (16 digits): ");
-		long cardNumArg = myScanner.nextLong();
+		String cardNumArg = myScanner.nextLine();
 		cardNum = cardNumArg;
 		System.out.println("Information updated");
 	}
@@ -53,7 +73,7 @@ public class Payment {
 	public void setExpDate() {
 		System.out.println("-Editing Exp Date-");
 		System.out.println("Exp Date (Follow format....4/20 => 042020): ");
-		int expDateArg = myScanner.nextInt();
+		String expDateArg = myScanner.nextLine();
 		expDate = expDateArg;
 		System.out.println("Information updated");
 	}
@@ -61,17 +81,62 @@ public class Payment {
 	public void setCCV() {
 		System.out.println("-Editing CCV-");
 		System.out.println("CCV: ");
-		int ccvArg = myScanner.nextInt();
+		String ccvArg = myScanner.nextLine();
 		ccv = ccvArg;
 		System.out.println("Information updated");
 	}
 	
 	public void deleteCardInfo() {
 		cardName = "";
-		cardNum = 0000000000000000;
-		expDate = 000000;
-		ccv = 000;
+		cardNum = "";
+		expDate = "";
+		ccv = "";
 		acctBalance = 0;
+	}
+	
+	public boolean validateCreditCardNumber(String input) { //Convert string to an array of ints
+		int [] creditCardInts = new int[input.length()];
+		
+		for(int i=0; i<input.length();i++) { 
+			creditCardInts[i] = Integer.parseInt(input.substring(i,i+1));
+		}
+		
+		if(creditCardInts.length==16) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean validateExpDate(String input) { //Convert string to an array of ints
+		int [] creditCardExp = new int[input.length()];
+		
+		for(int i=0; i<input.length();i++) { 
+			creditCardExp[i] = Integer.parseInt(input.substring(i,i+1));
+		}
+		
+		if(creditCardExp.length==6) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean validateCCV(String input) { //Convert string to an array of ints
+		int [] creditCardCCV = new int[input.length()];
+		
+		for(int i=0; i<input.length();i++) { 
+			creditCardCCV[i] = Integer.parseInt(input.substring(i,i+1));
+		}
+		
+		if(creditCardCCV.length==3) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public void schedulePay() { //Add funds into account balance later, can use calendar
