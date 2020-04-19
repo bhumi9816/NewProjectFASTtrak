@@ -7,6 +7,8 @@ class JUnit_Payment {
 	
 	private Payment paymentForAccount1;
 	private Payment paymentForAccount2;
+	private Payment paymentTester1;
+	private Vehicle car1;
 	
 	@Test
 	void TestingValidCreationOfPaymentObjectDefaultConstructor() {
@@ -38,7 +40,6 @@ class JUnit_Payment {
 		String ActualCardNum = paymentForAccount2.getCardNum();
 		String ActualExpDate = paymentForAccount2.getExpDate();
 		String ActualCcv = paymentForAccount2.getCCV();
-		double ActualAcctBalance = paymentForAccount2.getBalance();
 		
 		//Test Card Name
 		//Case for no input
@@ -65,7 +66,16 @@ class JUnit_Payment {
 		//Case for input
 		assertTrue(paymentForAccount2.validateCCV(paymentForAccount2.getCCV()), "Credit card ccv must be 3 digits long");
 		
+		//Test Account Balance
+		paymentForAccount2.loadAccount();
+		double ActualAcctBalance = paymentForAccount2.getBalance();
+		assertTrue(ActualAcctBalance >=0, "Account balance must be greater than or equal to 0");
 	}
 	
-	
+	@Test
+	void TestingSampleTransaction() {
+		paymentTester1 = new Payment("VISA", "3793545081662306", "162021", "582");
+		paymentTester1.loadAccount();
+		paymentTester1.receiveCharge();
+	}
 }
