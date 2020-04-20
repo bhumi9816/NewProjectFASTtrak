@@ -139,9 +139,9 @@ public class Payment {
 		}
 	}
 	
-	public void schedulePay() { //Add funds into account balance later, can use calendar
-		
-	}
+//	public void schedulePay() { //Unsure if possible, given the time of project deadline
+//		
+//	}
 	
 	public void loadAccount() { //User will reload their acct balance in anticipation of charges in the future
 		System.out.println("How much would you like to load? ");
@@ -151,9 +151,13 @@ public class Payment {
 		acctBalance = acctBalance+reloadAmount;
 	}
 	
-	public void receiveCharge(double finalFare) { //System will call this, deducting funds from the account every time user passes through toll bridge
-		System.out.println("Deducting $" + finalFare + " from Account Balance");
-		acctBalance = acctBalance-finalFare;
+	public void receiveCharge() { //System will call this, deducting funds from the account every time user passes through toll bridge
+		Final_Fare newFare = new Final_Fare();
+		double finalFareCharge = newFare.finalFare();
+		System.out.println("Deducting $" + finalFareCharge + " from Account Balance");
+		System.out.print("Previous account balance: " + acctBalance + "\n");
+		acctBalance = acctBalance-finalFareCharge;
+		System.out.println("New account balance: $" + acctBalance + "\n");
 	}
 	
 	public double getBalance() {
