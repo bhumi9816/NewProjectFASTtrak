@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Driver {
+public class PaymentDriver {
 	// full name
 	// whole credit/debit card number
 	// expiration date w/o slashes
@@ -17,7 +17,7 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		System.out.println("Testing Payment and Balance Class");
-		Payment newCard = new Payment("Chase", 1231222222222222, 042020, 789, 0.0); //Fix constructor
+		//Payment newCard = new Payment("Chase", 1231222222222222, 042020, 789, 0.0); //Fix constructor
 		Scanner myScanner = new Scanner(System.in);
 //		newCard.getCardInfo();
 //		newCard.setCardName();
