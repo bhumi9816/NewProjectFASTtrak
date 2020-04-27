@@ -1,11 +1,8 @@
-//FAST-TRAk Customer.java
+package finalProject.codejava;
 
-/**Author: Bhumi Patel */
-
-//Fields
-
-public class DashCustomer{
-    private String userId;
+public class DashCustomer {
+	
+	private String userId;
 
     private String firstName;
 
@@ -57,7 +54,7 @@ public class DashCustomer{
     }
 
     public void setFname(String firstName){
-        this.firstName = firstName;
+    	this.firstName = firstName;
     }
 
     public String getFname(){
@@ -65,6 +62,7 @@ public class DashCustomer{
     }
 
     public void setLname(String lastName){
+    	
         this.lastName = lastName;
     }
 
@@ -115,7 +113,34 @@ public class DashCustomer{
     }
 
 
+    public boolean checkUserId(String id){
+
+        //checking for valid-userId... use '&' operator
+        if(id.matches("[a-zA-Z0-9]+") && id.length() >=6){
+            return true;
+        }
+
+        else{
+            return false;
+        }
+
+    }
+
+    public boolean checkPassword(String password){
+        if(password.matches("[a-zA-Z0-9]+@$!*") && password.length() >=8){
+            return true;
+        }
+
+        else{
+            return false;
+        }
+    }
+
+	
+
 }
+
+/**Fields for Address Class */
 
 class Address{
     private int streetNumber;
