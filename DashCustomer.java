@@ -54,7 +54,7 @@ public class DashCustomer {
     }
 
     public void setFname(String firstName){
-        this.firstName = firstName;
+    	this.firstName = firstName;
     }
 
     public String getFname(){
@@ -62,6 +62,7 @@ public class DashCustomer {
     }
 
     public void setLname(String lastName){
+    	
         this.lastName = lastName;
     }
 
@@ -126,7 +127,7 @@ public class DashCustomer {
     }
 
     public boolean checkPassword(String password){
-        if(password.matches("[a-zA-Z0-9]+@$") && password.length()>=8){
+        if(password.matches("[a-zA-Z0-9]+@$!*") && password.length() >=8){
             return true;
         }
 
@@ -134,6 +135,8 @@ public class DashCustomer {
             return false;
         }
     }
+
+	
 
 }
 
