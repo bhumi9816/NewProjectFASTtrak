@@ -25,9 +25,10 @@ public class Payment {
 		acctBalance = 0.0;
 	}
 	
-	public void getCardInfo() {
+	public String getCardInfo() {
 		String x = "Card Name: " + cardName + "\nCard Number: " + cardNum + "\nExp Date:" + expDate + "\nCCV:" + ccv + "\nacctBalance:" + acctBalance + "\n";
-		System.out.println(x);
+//		System.out.println(x);
+		return x;
 	}
 	
 //	public void setCardInfo() { 		I need to break this method up for better implimentation
@@ -59,7 +60,7 @@ public class Payment {
 		System.out.println("Card Name: ");
 		String cardNameArg = myScanner.nextLine();
 		cardName = cardNameArg;
-		System.out.println("Information updated");
+
 	}
 	
 	public void setCardNum() {
@@ -86,12 +87,13 @@ public class Payment {
 		System.out.println("Information updated");
 	}
 	
-	public void deleteCardInfo() {
+	public String deleteCardInfo() {
 		cardName = "";
 		cardNum = "";
 		expDate = "";
 		ccv = "";
 		acctBalance = 0;
+		return "Deleted Card Info";
 	}
 	
 	public boolean validateCreditCardNumber(String input) { //Convert string to an array of ints
@@ -143,11 +145,8 @@ public class Payment {
 //		
 //	}
 	
-	public void loadAccount() { //User will reload their acct balance in anticipation of charges in the future
-		System.out.println("How much would you like to load? ");
-		double reloadAmount = myScanner.nextDouble();
-		
-		System.out.println("Adding $" + reloadAmount + " to Account Balance");
+	public void loadAccount(String amt) { //User will reload their acct balance in anticipation of charges in the future
+		double reloadAmount = Double.parseDouble(amt);
 		acctBalance = acctBalance+reloadAmount;
 	}
 	
