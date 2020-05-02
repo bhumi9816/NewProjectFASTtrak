@@ -67,7 +67,7 @@ class JUnit_Payment {
 		assertTrue(paymentForAccount2.validateCCV(paymentForAccount2.getCCV()), "Credit card ccv must be 3 digits long");
 		
 		//Test Account Balance
-		paymentForAccount2.loadAccount();
+		paymentForAccount2.loadAccount("50");
 		double ActualAcctBalance = paymentForAccount2.getBalance();
 		assertTrue(ActualAcctBalance >=0, "Account balance must be greater than or equal to 0");
 	}
@@ -75,7 +75,7 @@ class JUnit_Payment {
 	@Test
 	void TestingSampleTransaction() {
 		paymentTester1 = new Payment("VISA", "3793545081662306", "162021", "582");
-		paymentTester1.loadAccount();
-		paymentTester1.receiveCharge();
+		paymentTester1.loadAccount("50");
+		System.out.println(paymentTester1.receiveCharge());
 	}
 }

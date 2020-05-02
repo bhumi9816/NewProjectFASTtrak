@@ -5,7 +5,6 @@ public class Base_Cost {
 	private String location;
 	private int numOfAxles;
 	
-	private Scanner myScanner = new Scanner(System.in);
 	
 	Base_Cost(){
 		location = "";
@@ -17,15 +16,18 @@ public class Base_Cost {
 		//Get Axle information
 		
 		int bridgeNum; //Used in menu selection
-		System.out.println("1. Antioch Bridge");
-		System.out.println("2. Benicia-Martinez Bridge");
-		System.out.println("3. Carquinez Bridge");
-		System.out.println("4. Dumbarton Bridge");
-		System.out.println("5. Richmond-San Rafael Bridge");
-		System.out.println("6. San Francisco-Oakland Bay Bridge");
-		System.out.println("7. San Mateo-Hayward Bridge \n");
-		System.out.println("Please select which bridge you crossed: ");
-		bridgeNum = myScanner.nextInt();
+//		System.out.println("1. Antioch Bridge");
+//		System.out.println("2. Benicia-Martinez Bridge");
+//		System.out.println("3. Carquinez Bridge");
+//		System.out.println("4. Dumbarton Bridge");
+//		System.out.println("5. Richmond-San Rafael Bridge");
+//		System.out.println("6. San Francisco-Oakland Bay Bridge");
+//		System.out.println("7. San Mateo-Hayward Bridge \n");
+//		System.out.println("Please select which bridge you crossed: ");
+//		bridgeNum = myScanner.nextInt();
+		bridgeNum = (int)(Math.random()*((7-1)+1)+1);
+//		System.out.print("Random Bridge: " + bridgeNum);
+		
 		
 		if(bridgeNum == 1) {
 			location = "ANT";
