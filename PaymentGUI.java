@@ -2,14 +2,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class PaymentGUI {
+public class PaymentGUI extends JFrame implements ActionListener{
 	public static void main(String [] args) {
 		
 		JFrame frame = new JFrame("Your Balance"); //Create an instance of JFrame
+		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		Payment payment1 = new Payment();
 		
 		//View credit card info
-		JButton buttonViewInfo = new JButton("View Credit Card Info"); //Create instance of JButton for View info
+		JButton buttonViewInfo = new JButton("View Credit Card Info/Account Balance"); //Create instance of JButton for View info
 		buttonViewInfo.setBounds(130, 100, 300, 30); //Set size of button x-axis, y-axis, width, height
 		frame.add(buttonViewInfo); //Add button to JFrame
 		buttonViewInfo.addActionListener(
@@ -28,8 +29,38 @@ public class PaymentGUI {
 		buttonEditInfo.addActionListener(
 				new ActionListener() {
 					public void actionPerformed(ActionEvent event) {
+						// Request the credit card name
+						String creditCardName = JOptionPane.showInputDialog("Enter credit card number name");
+						payment1.setCardName(creditCardName);
 						
-//						JOptionPane.showMessageDialog(null, payment1.getCardInfo());
+						// Request the credit card number
+						String creditCardNum = JOptionPane.showInputDialog("Enter credit card number (16 digits)");
+						if (payment1.validateCreditCardNumber(creditCardNum)) {
+							payment1.setCardNum(creditCardNum);
+						}
+						else{
+							JOptionPane.showMessageDialog(null, "Invalid credit card number. Skipping.");
+						}
+						
+						// Request the credit card exp date
+						String creditCardExp = JOptionPane.showInputDialog("Enter expiration date (Follow format 4/20 => 042020)");
+						if (payment1.validateExpDate(creditCardExp)) {
+							payment1.setExpDate(creditCardExp);
+						}
+						else{
+							JOptionPane.showMessageDialog(null, "Invalid Expiration Date. Skipping.");
+						}
+						
+						// Request the ccv
+						String creditCardCCV = JOptionPane.showInputDialog("Enter CCV (3 digits)");
+						if (payment1.validateCCV(creditCardCCV)) {
+							payment1.setCCV(creditCardCCV);
+						}
+						else{
+							JOptionPane.showMessageDialog(null, "Invalid CCV. Skipping.");
+						}
+						
+						JOptionPane.showMessageDialog(null, "Successfully Edited Credit Card Details");
 					}
 				}
 		);
@@ -64,11 +95,36 @@ public class PaymentGUI {
 		JButton buttonSimulate = new JButton("Simulate Charge"); //Create instance for Simulate
 		buttonSimulate.setBounds(130, 100, 300, 30); //Set size
 		frame.add(buttonSimulate); //Add button to JFrame
+		buttonSimulate.addActionListener(
+				new ActionListener() {
+					public void actionPerformed(ActionEvent event) {
+						JOptionPane.showMessageDialog(null, payment1.receiveCharge());
+					}
+				}
+		);
 		
+		//Transaction History
+		JButton buttonHistory = new JButton("See Transaction History"); //Create instance for History
+		buttonHistory.setBounds(130, 100, 300, 30); //Set size
+		frame.add(buttonHistory); //Add button to JFrame	
+		buttonHistory.addActionListener(
+				new ActionListener() {
+					public void actionPerformed(ActionEvent event) {
+						JOptionPane.showMessageDialog(null, payment1.getTransactionHistory());
+					}
+				}
+		);
 		
-		frame.setSize(700,800); //Width, Height of window
+		frame.setSize(700,500); //Width, Height of window
+		frame.setResizable(false);
 		frame.setLayout(new FlowLayout()); //No layout managers
 		frame.setVisible(true); //Make frame visible
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }

@@ -7,6 +7,7 @@ public class Payment {
 	private String expDate;
 	private String ccv;
 	private double acctBalance;
+	private String transactionHistory = "";
 	private Scanner myScanner = new Scanner(System.in);
 	
 	public Payment() {
@@ -55,36 +56,36 @@ public class Payment {
 		return acctBalance;
 	}
 	
-	public void setCardName() {
-		System.out.println("-Editing Card Name-");
-		System.out.println("Card Name: ");
-		String cardNameArg = myScanner.nextLine();
+	public void setCardName(String cardNameArg) {
+//		System.out.println("-Editing Card Name-");
+//		System.out.println("Card Name: ");
+//		String cardNameArg = myScanner.nextLine();
 		cardName = cardNameArg;
 
 	}
 	
-	public void setCardNum() {
-		System.out.println("-Editing Card Num-");
-		System.out.println("Card Number (16 digits): ");
-		String cardNumArg = myScanner.nextLine();
+	public void setCardNum(String cardNumArg) {
+//		System.out.println("-Editing Card Num-");
+//		System.out.println("Card Number (16 digits): ");
+//		String cardNumArg = myScanner.nextLine();
 		cardNum = cardNumArg;
-		System.out.println("Information updated");
+//		System.out.println("Information updated");
 	}
 	
-	public void setExpDate() {
-		System.out.println("-Editing Exp Date-");
-		System.out.println("Exp Date (Follow format....4/20 => 042020): ");
-		String expDateArg = myScanner.nextLine();
+	public void setExpDate(String expDateArg) {
+//		System.out.println("-Editing Exp Date-");
+//		System.out.println("Exp Date (Follow format....4/20 => 042020): ");
+//		String expDateArg = myScanner.nextLine();
 		expDate = expDateArg;
-		System.out.println("Information updated");
+//		System.out.println("Information updated");
 	}
 	
-	public void setCCV() {
-		System.out.println("-Editing CCV-");
-		System.out.println("CCV: ");
-		String ccvArg = myScanner.nextLine();
+	public void setCCV(String ccvArg) {
+//		System.out.println("-Editing CCV-");
+//		System.out.println("CCV: ");
+//		String ccvArg = myScanner.nextLine();
 		ccv = ccvArg;
-		System.out.println("Information updated");
+//		System.out.println("Information updated");
 	}
 	
 	public String deleteCardInfo() {
@@ -92,7 +93,6 @@ public class Payment {
 		cardNum = "";
 		expDate = "";
 		ccv = "";
-		acctBalance = 0;
 		return "Deleted Card Info";
 	}
 	
@@ -150,19 +150,29 @@ public class Payment {
 		acctBalance = acctBalance+reloadAmount;
 	}
 	
-	public void receiveCharge() { //System will call this, deducting funds from the account every time user passes through toll bridge
+	public String receiveCharge() { //System will call this, deducting funds from the account every time user passes through toll bridge
 		Final_Fare newFare = new Final_Fare();
 		double finalFareCharge = newFare.finalFare();
-		System.out.println("Deducting $" + finalFareCharge + " from Account Balance");
-		System.out.print("Previous account balance: " + acctBalance + "\n");
+//		System.out.println("Deducting $" + finalFareCharge + " from Account Balance");
+//		System.out.print("Previous account balance: $" + acctBalance + "\n");
 		acctBalance = acctBalance-finalFareCharge;
-		System.out.println("New account balance: $" + acctBalance + "\n");
+//		System.out.println("New account balance: $" + acctBalance + "\n");
+		String temp = newFare.getFinalDetails();
+		addTransactionHistory(temp);
+		return temp;
 	}
 	
 	public double getBalance() {
 		return acctBalance;
 	}
 	
+	public String getTransactionHistory() {
+		return transactionHistory;
+	}
+	
+	public void addTransactionHistory(String transArg) {
+		transactionHistory += "-" + transArg;
+	}
 	public void printBalance() {
 		System.out.println("Current Account Balance: $" + acctBalance);
 	}
