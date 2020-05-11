@@ -124,7 +124,7 @@ public class Hub extends JFrame implements ActionListener {
 		   
 		   JButton button6 = new JButton("Edit Personal Info");
 		   frame.add(button6);
-		   button6.setBounds(270,60,150,30);
+		   button6.setBounds(350,60,150,30);
 		   button6.addActionListener(new ActionListener() {
 
 			@Override
