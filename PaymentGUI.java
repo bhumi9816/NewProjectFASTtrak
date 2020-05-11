@@ -1,130 +1,100 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+package finalProject.codejava;
 
-public class PaymentGUI extends JFrame implements ActionListener{
-	public static void main(String [] args) {
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class PaymentGUI {
+	
+	public PaymentGUI() {
+		JFrame payment = new JFrame("Payment Info");
+		payment.getContentPane().setBackground(Color.BLACK);
 		
-		JFrame frame = new JFrame("Your Balance"); //Create an instance of JFrame
-		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		Payment payment1 = new Payment();
+		JLabel cardName, cardNumber, expire_date, CVV;
 		
-		//View credit card info
-		JButton buttonViewInfo = new JButton("View Credit Card Info/Account Balance"); //Create instance of JButton for View info
-		buttonViewInfo.setBounds(130, 100, 300, 30); //Set size of button x-axis, y-axis, width, height
-		frame.add(buttonViewInfo); //Add button to JFrame
-		buttonViewInfo.addActionListener(
-					new ActionListener() {
-						public void actionPerformed(ActionEvent event) {
-							JOptionPane.showMessageDialog(null, payment1.getCardInfo());
-						}
-					}
-		);
+		JTextField c_name, c_num, exp_d, cvv;
 		
+		cardName = new JLabel("Name (that appears on card): ");
+		cardName.setFont(new Font("Serif", Font.BOLD, 13));
+		cardName.setForeground(Color.GREEN);
+		cardName.setBounds(20, 2, 180, 100);
 		
-		//Edit credit card info
-		JButton buttonEditInfo = new JButton("Edit Credit Card Info"); //Create instance for Edit info
-		buttonEditInfo.setBounds(130, 100, 300, 30); //Set size
-		frame.add(buttonEditInfo); //Add button to JFrame
-		buttonEditInfo.addActionListener(
-				new ActionListener() {
-					public void actionPerformed(ActionEvent event) {
-						// Request the credit card name
-						String creditCardName = JOptionPane.showInputDialog("Enter credit card number name");
-						payment1.setCardName(creditCardName);
-						
-						// Request the credit card number
-						String creditCardNum = JOptionPane.showInputDialog("Enter credit card number (16 digits)");
-						if (payment1.validateCreditCardNumber(creditCardNum)) {
-							payment1.setCardNum(creditCardNum);
-						}
-						else{
-							JOptionPane.showMessageDialog(null, "Invalid credit card number. Skipping.");
-						}
-						
-						// Request the credit card exp date
-						String creditCardExp = JOptionPane.showInputDialog("Enter expiration date (Follow format 4/20 => 042020)");
-						if (payment1.validateExpDate(creditCardExp)) {
-							payment1.setExpDate(creditCardExp);
-						}
-						else{
-							JOptionPane.showMessageDialog(null, "Invalid Expiration Date. Skipping.");
-						}
-						
-						// Request the ccv
-						String creditCardCCV = JOptionPane.showInputDialog("Enter CCV (3 digits)");
-						if (payment1.validateCCV(creditCardCCV)) {
-							payment1.setCCV(creditCardCCV);
-						}
-						else{
-							JOptionPane.showMessageDialog(null, "Invalid CCV. Skipping.");
-						}
-						
-						JOptionPane.showMessageDialog(null, "Successfully Edited Credit Card Details");
-					}
+		c_name = new JTextField();
+		c_name.setBounds(220, 43, 220, 20);
+		
+		cardNumber = new JLabel("(16-digit) Card Number: ");
+		cardNumber.setFont(new Font("Serif", Font.BOLD, 13));
+		cardNumber.setForeground(Color.GREEN);
+		cardNumber.setBounds(20, 45, 180, 100);
+		
+		c_num = new JTextField();
+		c_num.setBounds(220, 83, 220, 20);
+		
+		expire_date = new JLabel("Expire Date: ");
+		expire_date.setFont(new Font("Serif", Font.BOLD, 13));
+		expire_date.setForeground(Color.GREEN);
+		expire_date.setBounds(20, 88, 180, 100);
+		
+		exp_d = new JTextField();
+		exp_d.setBounds(220, 123, 220, 20);
+		
+		CVV = new JLabel("CVV: ");
+		CVV.setFont(new Font("Serif", Font.BOLD, 13));
+		CVV.setForeground(Color.GREEN);
+		CVV.setBounds(20, 121, 180, 100);
+		
+		cvv = new JTextField();
+		cvv.setBounds(220, 163, 220, 20);
+		
+		JButton b2 = new JButton("Finish");
+		b2.setBounds(180, 210, 100, 20);
+		b2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(c_name.getText().isEmpty() && c_num.getText().isEmpty() && exp_d.getText().isEmpty() &&
+						cvv.getText().isEmpty()) {
+					System.out.println("Enter Valid Input");
 				}
-		);
-		
-		//Delete credit card info 
-		JButton buttonDelInfo = new JButton("Delete Credit Card Info"); //Create instance for Delete info
-		buttonDelInfo.setBounds(130, 100, 300, 30); //Set size
-		frame.add(buttonDelInfo); //Add button to JFrame
-		buttonDelInfo.addActionListener(
-				new ActionListener() {
-					public void actionPerformed(ActionEvent event) {
-						JOptionPane.showMessageDialog(null, payment1.deleteCardInfo());
-					}
+				
+				if(c_num.getText().length() != 16 && cvv.getText().length() != 3) {
+					System.out.println("Invalid Input");
 				}
-		);
-		
-		//Add Funds
-		JButton buttonAddFunds = new JButton("Add Funds to Account"); //Create instance for Add Funds
-		buttonAddFunds.setBounds(130, 100, 300, 30); //Set size
-		frame.add(buttonAddFunds); //Add button to JFrame
-		buttonAddFunds.addActionListener(
-				new ActionListener() {
-					public void actionPerformed(ActionEvent event) {
-						String reloadAmount = JOptionPane.showInputDialog("How much would you like to load? ");
-						JOptionPane.showMessageDialog(null, "Adding $" + reloadAmount + " to Account Balance");
-						payment1.loadAccount(reloadAmount);
-					}
+				
+				else {
+					
+					//creating Payment object and passing all info to the constructor
+					Payment payInfo = new Payment(c_name.getText(), c_num.getText(), exp_d.getText(), cvv.getText());
+					
+					//open the Hub and connect with all classes
+					new Hub();
 				}
-		);
+				
+			}
+			
+		});
 		
-		//Simulate Charge
-		JButton buttonSimulate = new JButton("Simulate Charge"); //Create instance for Simulate
-		buttonSimulate.setBounds(130, 100, 300, 30); //Set size
-		frame.add(buttonSimulate); //Add button to JFrame
-		buttonSimulate.addActionListener(
-				new ActionListener() {
-					public void actionPerformed(ActionEvent event) {
-						JOptionPane.showMessageDialog(null, payment1.receiveCharge());
-					}
-				}
-		);
+	
 		
-		//Transaction History
-		JButton buttonHistory = new JButton("See Transaction History"); //Create instance for History
-		buttonHistory.setBounds(130, 100, 300, 30); //Set size
-		frame.add(buttonHistory); //Add button to JFrame	
-		buttonHistory.addActionListener(
-				new ActionListener() {
-					public void actionPerformed(ActionEvent event) {
-						JOptionPane.showMessageDialog(null, payment1.getTransactionHistory());
-					}
-				}
-		);
+		//adding labels and textField to frames
+		payment.add(cardName); payment.add(cardNumber); payment.add(expire_date); payment.add(CVV);
 		
-		frame.setSize(700,500); //Width, Height of window
-		frame.setResizable(false);
-		frame.setLayout(new FlowLayout()); //No layout managers
-		frame.setVisible(true); //Make frame visible
+		payment.add(c_name); payment.add(c_num); payment.add(exp_d); payment.add(cvv);
+		
+		payment.add(b2);
+		
+		payment.setSize(500, 350);
+		payment.setLayout(null);
+		payment.setLocationRelativeTo(null);
+		payment.setVisible(true);
+		
 		
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 }
