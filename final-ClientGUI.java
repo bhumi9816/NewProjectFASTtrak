@@ -1,8 +1,9 @@
-package finalProject.codejava;
+//package finalProject.codejava;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
 import java.util.*;
 import javax.swing.*;
 
@@ -53,15 +54,129 @@ public class ClientGUI extends Payment implements ActionListener {
 		
 		
 		//new Account frame
+<<<<<<< HEAD:ClientGUI.java
 				b2.addActionListener(new ActionListener() {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						JFrame f2 = new JFrame("New Account");
 						f2.getContentPane().setBackground(Color.BLACK);
+=======
+		b2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFrame f2 = new JFrame("New Account");
+				f2.getContentPane().setBackground(Color.BLACK);
+				
+				JLabel f, l, a_sName, a_sNum, c, z, phone, email;
+				
+				JTextField f_name, l_name, a_s1, a_s2, city, zip_code, cell_phone, e_mail;
+				
+				//First Name
+				f = new JLabel("First Name: ");
+				f.setFont(new Font("Serif", Font.BOLD, 13));
+				f.setForeground(Color.GREEN);
+				f.setBounds(110, 2, 100, 100);
+				
+				//text field to input info
+				f_name = new JTextField();
+				f_name.setBounds(100, 70, 102, 20);
+				
+				//Last Name
+				l = new JLabel("Last Name: ");
+				l.setFont(new Font("Serif", Font.BOLD, 13));
+				l.setForeground(Color.GREEN);
+				l.setBounds(110, 75, 100, 100);
+				
+				//text field to input info
+				l_name = new JTextField();
+				l_name.setBounds(100, 140, 102, 20);
+				
+				//Address: Street Name
+				a_sName = new JLabel("Address 1: Street Name");
+				a_sName.setFont(new Font("Serif", Font.BOLD, 13));
+				a_sName.setForeground(Color.GREEN);
+				a_sName.setBounds(110, 185, 152, 20);
+				
+				//text field to input info
+				a_s1 = new JTextField();
+				a_s1.setBounds(100, 210, 160, 20);
+				
+				//Extra space for address:
+				JTextField a_s11 = new JTextField();
+				a_s11.setBounds(100, 240, 140, 20);
+				
+				//Address Line: StreetNumber or AptNumber
+				a_sNum = new JLabel("Address 2: Street Num/Apt Num");
+				a_sNum.setFont(new Font("Serif", Font.BOLD, 13));
+				a_sNum.setForeground(Color.GREEN);
+				a_sNum.setBounds(110, 285, 190, 20);
+				
+				a_s2 = new JTextField();
+				a_s2.setBounds(100, 315, 150, 20);
+				
+				//City
+				c = new JLabel("City: ");
+				c.setFont(new Font("Serif", Font.BOLD, 13));
+				c.setForeground(Color.GREEN);
+				c.setBounds(110, 355, 102, 20);
+				
+				city = new JTextField();
+				city.setBounds(100, 380, 100, 20);
+				
+				//Zip-Code
+				z = new JLabel("Zip Code: ");
+				z.setFont(new Font("Serif", Font.BOLD, 13));
+				z.setForeground(Color.GREEN);
+				z.setBounds(110, 425, 102, 20);
+				
+				zip_code = new JTextField();
+				zip_code.setBounds(100, 455, 102, 20);
+				
+				//Cell-Phone
+				phone = new JLabel("Cell-Phone: ");
+				phone.setFont(new Font("Serif", Font.BOLD, 13));
+				phone.setForeground(Color.GREEN);
+				phone.setBounds(110, 495, 102, 20);
+				
+				cell_phone = new JTextField();
+				cell_phone.setBounds(100, 522, 102, 20);
+				
+				//Email
+				email = new JLabel("Email: ");
+				email.setFont(new Font("Serif", Font.BOLD, 13));
+				email.setForeground(Color.GREEN);
+				email.setBounds(110, 562, 102, 20);
+				
+				e_mail = new JTextField();
+				e_mail.setBounds(100, 590, 132, 20);
+				
+				JButton n = new JButton("Next");
+				n.setBounds(100, 629, 102, 20);
+				n.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if(f_name.getText().isEmpty() && l_name.getText().isEmpty() && a_s1.getText().isEmpty() &&
+								a_s2.getText().isEmpty() && city.getText().isEmpty() && zip_code.getText().isEmpty() &&
+								cell_phone.getText().isEmpty() && e_mail.getText().isEmpty()) {
+							
+							//add JOption Pane to show error message
+							System.out.println("Enter valid Info");
+						}
+							
+						JFrame n_1 = new JFrame("Create Account");
+						n_1.getContentPane().setBackground(Color.BLACK);
+>>>>>>> master:final-ClientGUI.java
 						
 						JLabel f, l, a_sName, a_sNum, c, z, phone, email;
 						
+<<<<<<< HEAD:ClientGUI.java
+=======
+						JTextField user = new JTextField();
+						user.setBounds(100, 55, 112, 20);
+>>>>>>> master:final-ClientGUI.java
 						
 									
 						
@@ -85,11 +200,16 @@ public class ClientGUI extends Payment implements ActionListener {
 						l_name = new JTextField();
 						l_name.setBounds(100, 140, 102, 20);
 						
+<<<<<<< HEAD:ClientGUI.java
 						//Address: Street Name
 						a_sName = new JLabel("Address 1: Street Name");
 						a_sName.setFont(new Font("Serif", Font.BOLD, 13));
 						a_sName.setForeground(Color.GREEN);
 						a_sName.setBounds(110, 185, 152, 20);
+=======
+						client.loadData(user.getText(), pass.getText());
+						
+>>>>>>> master:final-ClientGUI.java
 						
 						//text field to input info
 						a_s1 = new JTextField();
@@ -150,8 +270,16 @@ public class ClientGUI extends Payment implements ActionListener {
 
 							@Override
 							public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD:ClientGUI.java
 								JFrame n_1 = new JFrame("Create Account");
 								n_1.getContentPane().setBackground(Color.BLACK);
+=======
+								if(user.getText().isEmpty() && pass.getText().isEmpty()
+										&& client.checkUserId(user.getText()) && client.checkPassword(pass.getText())) {
+									System.out.println("Input Valid Info");
+									
+								}
+>>>>>>> master:final-ClientGUI.java
 								
 								//setting up client username
 								JLabel u = new JLabel("Username: ");
@@ -309,6 +437,7 @@ public class ClientGUI extends Payment implements ActionListener {
 				if(c.checkData(u_name, p_name)) {
 					//connect with the hub and allow to talk to other GUI classes like vehicle and payment
 					//new Hub();
+<<<<<<< HEAD:ClientGUI.java
 					
 					JFrame frame=new JFrame("HOME PAGE");  //home page
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
@@ -592,10 +721,196 @@ public class ClientGUI extends Payment implements ActionListener {
 				
 				else {
 					//Add a JOptionPane showmessageDialogue...
+=======
+					
+					JFrame frame=new JFrame("HOME PAGE");  //home page
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+					frame.getContentPane().setBackground(Color.BLACK);
+					
+					Vehiclecopy vehicle1= new Vehiclecopy(); 
+					Payment payment1 = new Payment();
+					
+					 //View Vehicle Info
+					   JButton button1=new JButton("View Vehicle Info"); 
+					   button1.setBounds(20,20,150,30);
+					   frame.add(button1);
+					   button1.addActionListener
+					   (
+							   new ActionListener() {
+								   public void actionPerformed(ActionEvent e)
+								   {
+									   JOptionPane.showMessageDialog(null,vehicle1.getVehicleInfo());
+								   }
+							   }	   
+							   
+					   );
+					   
+					   
+					   //View Payment Options
+					   JButton button2=new JButton("Payment Options");
+					   frame.add(button2);
+					   button2.setBounds(180,20,150,30);
+					   button2.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							try {
+								PaymentGUI paymentWindow = new PaymentGUI(payment1,u_name);
+							} catch (FileNotFoundException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						   
+					   });
+					   
+					   JButton button3=new JButton("View Personal Info ");
+					   frame.add(button3);
+					   button3.setBounds(340,20,150,30); 
+					   button3.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							
+							//View personal info
+							JOptionPane.showMessageDialog(null, c.ViewInfo(u_name));						
+										
+						}
+						   
+					   });
+					   
+					 //Add/Edit Vehicle Info
+					   JButton button4= new JButton("Edit Vehicle Info");
+					   frame.add(button4);
+					   button4.setBounds(500,20,200,30);  
+					   button4.addActionListener
+					   (
+							new ActionListener()
+							{
+								public void actionPerformed(ActionEvent e)
+								{
+									//License Plate Number
+									String licensePlate= JOptionPane.showInputDialog("Enter the License Plate NUmber of your car (it should be 7 Apha-Numeric): ");
+									vehicle1.setLicense_Plate(licensePlate);
+									
+									//company name
+									String make=JOptionPane.showInputDialog("Enter the make of the car: ");
+									vehicle1.setMake(make);
+									
+									//model of the car
+									String model= JOptionPane.showInputDialog("Enter the model of your car: ");
+									vehicle1.setModel(model);
+									
+									int year= Integer.parseInt(JOptionPane.showInputDialog("Enter the year of your car: "));
+									vehicle1.setYear(year);
+									
+									String color= JOptionPane.showInputDialog("Enter the color of the car: ");
+									vehicle1.setColor(color);
+									
+									int num= Integer.parseInt(JOptionPane.showInputDialog("Enter the number of pair of axles of your car, to know the size of your car (atleast two pairs): "));
+									vehicle1.setAxles(num);
+									
+									boolean clean= Boolean.parseBoolean(JOptionPane.showInputDialog("Is your Vehicle clean?(true/false): "));
+									vehicle1.setClean(clean);
+
+								}
+							}
+							   
+					   );
+					   
+					   JButton button5=new JButton("Delete Vehicle");
+					   frame.add(button5);
+					   button5.setBounds(150,60,150,30); 
+					   button5.addActionListener(new ActionListener() {
+
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								vehicle1.deleteVehicle();
+
+							}
+							   
+						});
+					  
+					   
+					   
+					   JButton button6 = new JButton("Edit Personal Info");
+					   frame.add(button6);
+					   button6.setBounds(350,60,150,30);
+					   button6.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							//First Name
+							String f_name = JOptionPane.showInputDialog("Enter First Name: ");
+							c.setFname(f_name);
+							
+							//Last Name
+							String l_name =JOptionPane.showInputDialog("Enter Last Name: ");
+							c.setLname(l_name);
+							
+							//Email
+							String e_mail = JOptionPane.showInputDialog("Enter email: ");
+							c.setEmail(e_mail);
+							
+							//phone number
+							String p = JOptionPane.showInputDialog("Enter phone-number: ");
+							c.setPhoneNum(Integer.parseInt(p));
+							
+							//Address-Street Name
+							String a_sname = JOptionPane.showInputDialog("Enter Street Name:  ");
+							a_c1.setStreetName(a_sname);
+							
+							//Address-Street Num
+							String a_snum = JOptionPane.showInputDialog("Enter Street Num/Apt: ");
+							a_c1.setStreetNum(Integer.parseInt(a_snum));
+							
+							//Zip-code
+							String a_zip = JOptionPane.showInputDialog("Enter Zip-Code: ");
+							a_c1.setZipCode(Integer.parseInt(a_zip));
+							
+											
+							
+						}
+						   
+					   });
+					   
+					   
+					   
+					   JButton button8=new JButton("Sign Out");
+					   frame.add(button8);
+					   button8.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							JFrame n_f = new JFrame("LogOut Window");
+							
+							n_f.setSize(200, 200);
+							n_f.setLayout(null);
+							n_f.setLocationRelativeTo(null);
+							n_f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+							n_f.setVisible(true);
+							
+						}
+						   
+					   });
+					   
+					   frame.setSize(800,200);
+					   frame.setLocationRelativeTo(null);
+					   frame.setLayout(null);  
+					   frame.setVisible(true);
+>>>>>>> master:final-ClientGUI.java
 					
 					JFrame alert_f = new JFrame();
 					JOptionPane.showMessageDialog(alert_f, "INVALID INFO!! TRY AGAIN", "Error Message", JOptionPane.ERROR_MESSAGE);
 					
+<<<<<<< HEAD:ClientGUI.java
+=======
+				}
+				
+				else {
+					//Add a JOptionPane showmessageDialogue...
+					System.out.println("Invalid Info");
+>>>>>>> master:final-ClientGUI.java
 					
 				}
 				
