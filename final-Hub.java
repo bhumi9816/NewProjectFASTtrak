@@ -1,3 +1,5 @@
+package test;
+
 //package finalProject.codejava;
 
 import java.awt.Color;
@@ -118,8 +120,7 @@ public class Hub extends JFrame implements ActionListener {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
-					//View personal info				
+									
 					v1.deleteVehicle();
 								
 				}
@@ -158,9 +159,16 @@ public class Hub extends JFrame implements ActionListener {
 				String a_snum = JOptionPane.showInputDialog("Enter Street Num/Apt: ");
 				a_c1.setStreetNum(Integer.parseInt(a_snum));
 				
+				//City
+				String c_ity = JOptionPane.showInputDialog("Enter City: ");
+				a_c1.setCity(c_ity);
+				
 				//Zip-code
 				String a_zip = JOptionPane.showInputDialog("Enter Zip-Code: ");
 				a_c1.setZipCode(Integer.parseInt(a_zip));
+				
+				c1.LoadInfo(c1.getId(), f_name, l_name, e_mail, a_zip, c_ity);
+				c1.ViewInfo(c1.getId());
 				
 								
 				
@@ -179,7 +187,10 @@ public class Hub extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				JFrame n_f = new JFrame("LogOut Window");
 				
-				//add sign out ...
+				n_f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				
+				JOptionPane.showMessageDialog(n_f, "Thank you for visiting FastTrak", "Log Out", JOptionPane.INFORMATION_MESSAGE);							
+				
 				
 			}
 			   

@@ -1,3 +1,5 @@
+package test;
+
 //package finalProject.codejava;
 
 import java.awt.Color;
@@ -15,6 +17,7 @@ public class ClientGUI extends Payment implements ActionListener {
 	
 	JButton b1, b2;
 	JTextField ans, ans1;
+	Vehiclecopy vehicle1;
 	
 	
 	
@@ -111,7 +114,7 @@ public class ClientGUI extends Payment implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				String u_name = ans.getText();			
 				String p_name = ans1.getText();
-				Vehiclecopy vehicle1= new Vehiclecopy(); 
+				vehicle1= new Vehiclecopy(); 
 				Payment payment1 = new Payment();
 				String fileName = "vehicleDatabase.txt";
 				Vector<String> fileHistory = new Vector(3);
@@ -293,7 +296,42 @@ public class ClientGUI extends Payment implements ActionListener {
 					   JButton button5=new JButton("Delete Vehicle");
 					   frame.add(button5);
 					   button5.setBounds(150,60,150,30); 
-					   vehicle1.deleteVehicle();
+					   button5.addActionListener(new ActionListener() {
+
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								vehicle1.setMake("");
+								vehicle1.setModel("");
+								vehicle1.setColor("");
+								vehicle1.setYear("0");
+								vehicle1.setLicense_Plate("");
+								vehicle1.setClean("true");
+								vehicle1.setAxles("2");
+								
+								File fnew=new File(fileName);
+								FileWriter fWriter;
+								
+								
+									try {
+										fWriter = new FileWriter(fnew, false);
+										for(int i = 0 ; i<fileHistory.size(); i++) {
+											fWriter.write(fileHistory.elementAt(i)+"\n");
+										}
+										fWriter.write(u_name+","+"emptyMake"+","+"emptyModel"+","+"emptyColor"+","+"2000"+","+"1111111"+","+"true"+","+"2"+"\n");
+										fWriter.close();
+									} catch (IOException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+									
+								
+								
+								JOptionPane.showMessageDialog(null,"Changes Saved!");
+								//public void setVehicleInfo(String dID, String m, String mdl, int y, String col, String lp,boolean cv, int num, int ax)
+
+							}
+							   
+						   });
 					   
 					   JButton button6 = new JButton("Edit Personal Info");
 					   frame.add(button6);
@@ -326,10 +364,18 @@ public class ClientGUI extends Payment implements ActionListener {
 							String a_snum = JOptionPane.showInputDialog("Enter Street Num/Apt: ");
 							a_c1.setStreetNum(Integer.parseInt(a_snum));
 							
+							String c_ity = JOptionPane.showInputDialog("Enter City: ");
+							a_c1.setCity(c_ity);
+							
 							//Zip-code
 							String a_zip = JOptionPane.showInputDialog("Enter Zip-Code: ");
 							a_c1.setZipCode(Integer.parseInt(a_zip));
 							
+							//adding to the client cInfo dictionary
+							c.LoadInfo(u_name, f_name, l_name, e_mail, a_zip, c_ity);
+							
+							//view-edited Info
+							c.ViewInfo(u_name);						
 											
 							
 						}
@@ -363,7 +409,6 @@ public class ClientGUI extends Payment implements ActionListener {
 				}
 				
 				else {
-					//Add a JOptionPane showmessageDialogue...
 					
 					JFrame alert_f = new JFrame();
 					JOptionPane.showMessageDialog(alert_f, "INVALID INFO!! TRY AGAIN", "Error Message", JOptionPane.ERROR_MESSAGE);

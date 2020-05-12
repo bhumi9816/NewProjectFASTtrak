@@ -1,3 +1,5 @@
+package test;
+
 //package finalProject.codejava;
 
 import javax.swing.*;
