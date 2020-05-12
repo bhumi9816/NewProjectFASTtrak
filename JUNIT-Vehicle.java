@@ -1,27 +1,46 @@
+package test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.Test;
-
-public class VehicleTest {
-
+class VehiclecopyTest 
+{
 	@Test
-	public void test() {
-	Vehicle tester= new Vehicle();
-	
-	tester.setVehicleInfo("1234", "Lexus", "RX F Sport", 2020, "Red", "45KSP23", true, 1, 4);
-	//Allowing the user to enter more than 1 Vehicle
-	tester.setNumberOfVehicle(10);
-	assertEquals(10, tester.getNumberOfVehicles(),"User should be able to add more than one Vehicle.");
+	void test() 
+	{
+		{
+			Vehiclecopy tester= new Vehiclecopy();
+			boolean correctvalue=false;
+			boolean check= tester.validateLicense("23efs");
+			assertEquals(correctvalue, check, "Vehicle name plate should be 7-alpha-numeric long. ");
+			
+			tester.setClean("true");
+			boolean correctvalue2=true;
+			boolean check1= tester.getClean();
+			assertEquals(correctvalue2,check1, "setClean should be able to set the right value. ");
+			
+			tester.setAxles("3");
+			int check2= tester.getAxles();
+			assertEquals(3, check2, "Set Axles should set the correct pair of axles. ");
+			
+			tester.setLicense_Plate("64ms98e");
+			String check3= tester.getLp();
+			assertEquals("64ms98e", check3, "License plate should be able to save the valid license plate. ");
 
-	//name plate should be 7-alpha-numeric digit long
-	assertEquals("45KSP23",tester.get_Dashid(), "Vehicle name plate should be 7-alpha-numeric long. " );
-	
-	assertEquals(4, tester.getaxles(), "Axles should be 2 pairs atleast");
-	
+			tester.setYear("2019");
+			int check4=tester.getYear();
+			assertEquals(2019, check4,"Valid Year should be saved. ");
+			
+			tester.setColor("Red");
+			String check5= tester.getColor();
+			assertEquals("Red", check5, "It should return Red color.");
+			
+			tester.setModel("CRV");
+			String check6=tester.getModel();
+			assertEquals("CRV", check6, "It should have returned CRV. ");
 		
-		
+			
+		}
 	}
-;
 }
