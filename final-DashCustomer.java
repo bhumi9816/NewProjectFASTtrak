@@ -9,8 +9,8 @@ import java.util.Vector;
  * Client Fields */
 
 public class DashCustomer {
-	
-	private String userId;
+    
+    private String userId;
 
     private String firstName;
 
@@ -46,19 +46,19 @@ public class DashCustomer {
     }
     
     public DashCustomer(String userId) {
-    	this.userId = userId;
+        this.userId = userId;
     }
     
     public void DashDel() {
-    	this.userId = "";
-    	
-    	this.firstName = "";
-    	
-    	this.lastName = "";
-    	
-    	this.email = "";
-    	
-    	this.activateAccount = false;
+        this.userId = "";
+        
+        this.firstName = "";
+        
+        this.lastName = "";
+        
+        this.email = "";
+        
+        this.activateAccount = false;
     }
 
     public DashCustomer(String userId, String firstName, String lastName, String email, boolean activateAccount){
@@ -84,7 +84,7 @@ public class DashCustomer {
     }
 
     public void setFname(String firstName){
-    	this.firstName = firstName;
+        this.firstName = firstName;
     }
 
     public String getFname(){
@@ -92,7 +92,7 @@ public class DashCustomer {
     }
 
     public void setLname(String lastName){
-    	
+        
         this.lastName = lastName;
     }
 
@@ -160,12 +160,12 @@ public class DashCustomer {
     }
 
     public boolean checkPassword(String password){
-    	
-    	//checking for valid-password for character and length
+        
+        //checking for valid-password for character and length
         if(password.matches("[a-zA-Z0-9]+@") || password.matches("[a-zA-Z0-9]+!")) {
-        	if(password.length() >=8) {
-        		return true;       		
-        	}
+            if(password.length() >=8) {
+                return true;            
+            }
       
         }
 
@@ -177,38 +177,38 @@ public class DashCustomer {
      * The function also make sure that id and password follow character and length guideline*/
     
     public boolean checkData(String id, String password) {
-    	
-    	//loading data
-    	loadData();
-    	
-    	//loading new data as well
-    	//loadNewInfo(id, password);
-    	
-    	Enumeration<String> e = cLoginInfo.keys();
-    	
-    		while(e.hasMoreElements()) {
-    				if(e.nextElement().equals(id)) {      				
-        				return true;       				
-        			}      			    			
-        	}
-    		
-    	return false;
+        
+        //loading data
+        loadData();
+        
+        //loading new data as well
+        //loadNewInfo(id, password);
+        
+        Enumeration<String> e = cLoginInfo.keys();
+        
+            while(e.hasMoreElements()) {
+                    if(e.nextElement().equals(id)) {                    
+                        return true;                    
+                    }                               
+            }
+            
+        return false;
     }
     
     public boolean checkData1(String id1, String password1) {
-    	
-    	//loading data
-    	loadData();
-    	
-    	Enumeration<String> e1 = cLoginInfo.elements();
-    	while(e1.hasMoreElements()) {
-    		if(e1.nextElement().equals(password1)) {
-    			return true;
-    		}
-    	}
-    	
-    	return false;
-    	
+        
+        //loading data
+        loadData();
+        
+        Enumeration<String> e1 = cLoginInfo.elements();
+        while(e1.hasMoreElements()) {
+            if(e1.nextElement().equals(password1)) {
+                return true;
+            }
+        }
+        
+        return false;
+        
     }
  
     
@@ -216,99 +216,99 @@ public class DashCustomer {
      * Loading data to dictionary*/
     
     public void loadData() {
-    	
-    	/*
-    	 * Ten Stimulated user-Id and their password info to make sure correct client is logged in,
-    	 * this can be further adapted to a user-id : password database*/
-    	
-    	//loading data to compare user_id and password
-    	cLoginInfo.put("bhumi34", "Password21@");
-    	cLoginInfo.put("john45", "jPassword10@");
-    	cLoginInfo.put("kaite89", "kPasscode90!");
-    	cLoginInfo.put("joshua2", "Passjosh56@");
-    	cLoginInfo.put("kara23", "Kpassgen90!");
-    	cLoginInfo.put("mary16", "Dyellow78@");
-    	cLoginInfo.put("justin08", "Fellow56hi@");
-    	cLoginInfo.put("care89l", "Caroline49@");
-    	cLoginInfo.put("wyatt52", "Passwyatt76!");
-    	cLoginInfo.put("hello90", "Byeehi71!");
-    	
-    	/*
-    	 * Three stimulated user-Ids and their client information that can be further be adapted to
-    	 * a database carrying client info. */
-    	
-    	//loading data for given user_id with their name, email and status
-    	Vector<String> v1 = new Vector<String>();
-    	v1.addElement("\nBhumi \t"); v1.addElement("Patel\n"); v1.addElement("bpatel23@horizon.csueastbay.edu\n");
-    	v1.addElement(Integer.toString(93256) + '\n'); v1.addElement("Hayward");
+        
+        /*
+         * Ten Stimulated user-Id and their password info to make sure correct client is logged in,
+         * this can be further adapted to a user-id : password database*/
+        
+        //loading data to compare user_id and password
+        cLoginInfo.put("bhumi34", "Password21@");
+        cLoginInfo.put("john45", "jPassword10@");
+        cLoginInfo.put("kaite89", "kPasscode90!");
+        cLoginInfo.put("joshua2", "Passjosh56@");
+        cLoginInfo.put("kara23", "Kpassgen90!");
+        cLoginInfo.put("mary16", "Dyellow78@");
+        cLoginInfo.put("justin08", "Fellow56hi@");
+        cLoginInfo.put("care89l", "Caroline49@");
+        cLoginInfo.put("wyatt52", "Passwyatt76!");
+        cLoginInfo.put("hello90", "Byeehi71!");
+        
+        /*
+         * Three stimulated user-Ids and their client information that can be further be adapted to
+         * a database carrying client info. */
+        
+        //loading data for given user_id with their name, email and status
+        Vector<String> v1 = new Vector<String>();
+        v1.addElement("\nBhumi \t"); v1.addElement("Patel\n"); v1.addElement("bpatel23@horizon.csueastbay.edu\n");
+        v1.addElement(Integer.toString(93256) + '\n'); v1.addElement("Hayward");
     
-    	//adding to the dictionary database for the given userId
-    	cInfo.put("bhumi34",v1);
-    	
-    	Vector<String> v2 = new Vector<String>();
-    	v2.addElement("\nJohn \t"); v2.addElement("Stewart\n"); v2.addElement("jcoolStewart99@gmail.com\n");
-    	v2.addElement(Integer.toString(94589)+ '\n'); v2.addElement("San Fransico");
-    	
-    	cInfo.put("john45", v2);
-    	
-    	Vector<String> v3 = new Vector<String>();
-    	v3.addElement("\nKaite \t"); v3.addElement("Morgan\n"); v3.addElement("kaitehii06@yahoo.com\n");
-    	v3.addElement(Integer.toString(92110)+ '\n'); v3.addElement("Oakland");
-    	
-    	cInfo.put("kaite89", v3);
-    	
-    	Vector<String> v4 = new Vector<String>();
-    	v4.addElement("\nJoshua \t"); v4.addElement("Gomez\n"); v4.addElement("josh834cool@gmail.com\n");
-    	v4.addElement(Integer.toString(98234)+ '\n'); v4.addElement("Livermore");
-    	
-    	cInfo.put("joshua2", v4);
-    	
-    	Vector<String> v5 = new Vector<String>();
-    	v5.addElement("\nKara \t"); v5.addElement("Keeling\n"); v5.addElement("karaK34@hotmail.com\n");
-    	v5.addElement(Integer.toString(97845)+ '\n'); v5.addElement("San Fransico");
-    	
-    	cInfo.put("kara23", v5);
-    	  	   	
+        //adding to the dictionary database for the given userId
+        cInfo.put("bhumi34",v1);
+        
+        Vector<String> v2 = new Vector<String>();
+        v2.addElement("\nJohn \t"); v2.addElement("Stewart\n"); v2.addElement("jcoolStewart99@gmail.com\n");
+        v2.addElement(Integer.toString(94589)+ '\n'); v2.addElement("San Fransico");
+        
+        cInfo.put("john45", v2);
+        
+        Vector<String> v3 = new Vector<String>();
+        v3.addElement("\nKaite \t"); v3.addElement("Morgan\n"); v3.addElement("kaitehii06@yahoo.com\n");
+        v3.addElement(Integer.toString(92110)+ '\n'); v3.addElement("Oakland");
+        
+        cInfo.put("kaite89", v3);
+        
+        Vector<String> v4 = new Vector<String>();
+        v4.addElement("\nJoshua \t"); v4.addElement("Gomez\n"); v4.addElement("josh834cool@gmail.com\n");
+        v4.addElement(Integer.toString(98234)+ '\n'); v4.addElement("Livermore");
+        
+        cInfo.put("joshua2", v4);
+        
+        Vector<String> v5 = new Vector<String>();
+        v5.addElement("\nKara \t"); v5.addElement("Keeling\n"); v5.addElement("karaK34@hotmail.com\n");
+        v5.addElement(Integer.toString(97845)+ '\n'); v5.addElement("San Fransico");
+        
+        cInfo.put("kara23", v5);
+                
     }
     
     public void loadNewInfo(String id, String pass) {
-    	
-    	//loading new client info to the current dictionary
-    	cLoginInfo.put(id, pass);
+        
+        //loading new client info to the current dictionary
+        cLoginInfo.put(id, pass);
     }
     
     public void LoadInfo(String id, String first_name, String last_name, String email, String zip_code, String city) {
-    	Vector<String> g_vector = new Vector<String>();
-    	g_vector.addElement(first_name); g_vector.addElement(last_name); g_vector.addElement(email);
-    	g_vector.addElement(zip_code); g_vector.addElement(city);
-    	
-    	cInfo.put(id, g_vector);
-    	
+        Vector<String> g_vector = new Vector<String>();
+        g_vector.addElement(first_name); g_vector.addElement(last_name); g_vector.addElement(email);
+        g_vector.addElement(zip_code); g_vector.addElement(city);
+        
+        cInfo.put(id, g_vector);
+        
     }
     
     public String ViewInfo(String id) {
-    	Vector<String> v = new Vector<String>();
-    	
-    	for(Enumeration enu = cInfo.keys() ; enu.hasMoreElements();) {
-    		if(enu.nextElement().equals(id)) {
-    			
-    			v = cInfo.get(id);
-    		}
-    		
-    	}
-    	//System.out.println("Elements are " + v);
-    	
-    	return "User-Id: " + id + '\n' + v.get(0) + '\t' + v.get(1) + '\n' + v.get(2) + '\n' + v.get(3) + '\n' +
-    			v.get(4);
-    			  	
+        Vector<String> v = new Vector<String>();
+        
+        for(Enumeration enu = cInfo.keys() ; enu.hasMoreElements();) {
+            if(enu.nextElement().equals(id)) {
+                
+                v = cInfo.get(id);
+            }
+            
+        }
+        //System.out.println("Elements are " + v);
+        
+        return "User-Id: " + id + '\n' + v.get(0) + '\t' + v.get(1) + '\n' + v.get(2) + '\n' + v.get(3) + '\n' +
+                v.get(4);
+                    
     }
     
     public void DelInfo(String id) {
-    	for(Enumeration i = cInfo.keys() ; i.hasMoreElements();) {
-    		if(i.nextElement().equals(id)) {
-    			cInfo.remove(id);
-    		}
-    	}
+        for(Enumeration i = cInfo.keys() ; i.hasMoreElements();) {
+            if(i.nextElement().equals(id)) {
+                cInfo.remove(id);
+            }
+        }
     }
     
  

@@ -1,0 +1,10 @@
+kaite89,Honda,Civic,Black,2021,7BXZ594,true,2
+bhumi34,Honda,CRV,White,2029,7CGR252,false,3
+john45,Toyota,Corolla,Black,2020,6YKS356,true,2
+joshua2,Honda,Civic,Blue,2022,7AVW804,true,4
+kara23,Toyota,Civic,Green,2027,7BDB527,true,2
+mary16,Honda,Civic,Purple,2019,7BKY399,false,4
+justin08,Toyota,Corolla,Yellow,2020,6XJZ741,true,2
+care89l,Honda,CRV,Blue,2020,7ACR117,true,2
+wyatt52,Honda,Civic,White,2022,7BGF139,false,3
+hello90,Toyota,Civic,Black,2024,7BGP454,true,2

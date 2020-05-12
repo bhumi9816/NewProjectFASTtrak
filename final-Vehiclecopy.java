@@ -1,4 +1,4 @@
-package test;
+
 
 //import java.util.*;
 
@@ -101,9 +101,9 @@ public class Vehiclecopy
 	}
 	
 	
-	public void setYear(int year) 
+	public void setYear(String year) 
 	{
-		this.year = year;
+		this.year = Integer.parseInt(year);
 	}
 	
 	
@@ -113,15 +113,20 @@ public class Vehiclecopy
 	}
 	
 
-	public void setClean(boolean clean) 
+	public void setClean(String arg) 
 	{
-		this.cleanV = clean;
+		if(arg.compareTo("true")==0) {
+			cleanV=true;
+		}
+		else {
+			cleanV=false;
+		}
 	}
 	
 
-	public void setAxles(int axle) 
+	public void setAxles(String axle) 
 	{
-		this.axles = axle;
+		this.axles = Integer.parseInt(axle);
 	}
 	
 	
@@ -205,6 +210,15 @@ public class Vehiclecopy
 	public String getMake()
 	{
 		return this.c_name;
+	}
+	
+	public boolean validateLicense(String arg) {
+		if(arg.length()==7) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 
