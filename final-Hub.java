@@ -174,7 +174,7 @@ public class Hub extends JFrame implements ActionListener {
 		   frame.add(button8);
 		   button8.setBounds(300, 110, 150, 30);
 		   button8.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JFrame n_f = new JFrame("LogOut Window");

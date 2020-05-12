@@ -3,7 +3,10 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import javax.swing.*;
 
@@ -106,9 +109,18 @@ public class ClientGUI extends Payment implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-					
 				String u_name = ans.getText();			
 				String p_name = ans1.getText();
+				Vehiclecopy vehicle1= new Vehiclecopy(); 
+				Payment payment1 = new Payment();
+				String fileName = "vehicleDatabase.txt";
+				Vector<String> fileHistory = new Vector(3);
+				File myFile = new File(fileName);
+				
+				
+				
+				
+				
 				
 				DashCustomer c = new DashCustomer();
 				Address a_c1 = new Address();
@@ -121,9 +133,7 @@ public class ClientGUI extends Payment implements ActionListener {
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 					frame.getContentPane().setBackground(Color.BLACK);
 					
-					Vehiclecopy vehicle1= new Vehiclecopy(); 
 					
-					Payment payment1 = new Payment();
 					
 					 //View Vehicle Info
 					   JButton button1=new JButton("View Vehicles "); 
@@ -132,8 +142,48 @@ public class ClientGUI extends Payment implements ActionListener {
 					   button1.addActionListener
 					   (
 							   new ActionListener() {
+								   
 								   public void actionPerformed(ActionEvent e)
 								   {
+									   
+										
+										try {
+											Scanner myScanner;
+											myScanner = new Scanner(myFile);
+											String make;
+											String model;
+											String color;
+											String year;
+											String licensePlate;
+											String cleanV;
+											String axles;
+											while(myScanner.hasNextLine()) {
+												String workingLine = myScanner.nextLine();
+												String[] readingArray = workingLine.split(",");
+												if(u_name.compareTo(readingArray[0])==0) { //if the user name matches active user name
+													make = readingArray[1];
+													model = readingArray[2];
+													color = readingArray[3];
+													year = readingArray[4];
+													licensePlate = readingArray[5];
+													cleanV = readingArray[6];
+													axles = readingArray[7];
+													vehicle1.setMake(make);
+													vehicle1.setModel(model);
+													vehicle1.setColor(color);
+													vehicle1.setYear(year);
+													vehicle1.setLicense_Plate(licensePlate);
+													vehicle1.setClean(cleanV);
+													vehicle1.setAxles(axles);
+												}
+												fileHistory.add(workingLine);
+											}
+											myScanner.close();
+										} catch (FileNotFoundException e2) {
+											// TODO Auto-generated catch block
+											e2.printStackTrace();
+										}
+										
 									   JOptionPane.showMessageDialog(null,vehicle1.getVehicleInfo());
 								   }
 							   }	   
@@ -186,7 +236,12 @@ public class ClientGUI extends Payment implements ActionListener {
 								{
 									//License Plate Number
 									String licensePlate= JOptionPane.showInputDialog("Enter the License Plate NUmber of your car (it should be 7 Apha-Numeric): ");
-									vehicle1.setLicense_Plate(licensePlate);
+									if(vehicle1.validateLicense(licensePlate)) {
+										vehicle1.setLicense_Plate(licensePlate);
+									}
+									else {
+										JOptionPane.showMessageDialog(null,"Invalid number characters \n Skipping ");
+									}
 									
 									//company name
 									String compname=JOptionPane.showInputDialog("Enter the company name of the car: ");
@@ -204,8 +259,7 @@ public class ClientGUI extends Payment implements ActionListener {
 									int num= Integer.parseInt(JOptionPane.showInputDialog("Enter the number of pair of axles of your car, to know the size of your car (atleast two pairs): "));
 									if(num<2)
 									{
-										JOptionPane.showMessageDialog(null,"Invalid number of pair of axles. Please enter a number more than 2. ");
-										num=Integer.parseInt(JOptionPane.showInputDialog("Enter the number of pair of axles of your car, to know the size of your car (atleast two pairs): "));
+										JOptionPane.showMessageDialog(null,"Invalid number of pair of axles.\n Skipping");
 									}
 									
 									boolean clean= Boolean.parseBoolean(JOptionPane.showInputDialog("Is your Vehicle clean?(true/false): "));
@@ -213,7 +267,24 @@ public class ClientGUI extends Payment implements ActionListener {
 									
 									vehicle1.setVehicleInfo(u_name,compname,model,year,color,licensePlate, clean, 1, num);
 									
+									File fnew=new File(fileName);
+									FileWriter fWriter;
 									
+									
+										try {
+											fWriter = new FileWriter(fnew, false);
+											for(int i = 0 ; i<fileHistory.size(); i++) {
+												fWriter.write(fileHistory.elementAt(i)+"\n");
+											}
+											fWriter.write(u_name+","+compname+","+model+","+color+","+year+","+licensePlate+","+clean+","+num+"\n");
+											fWriter.close();
+										} catch (IOException e1) {
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										}
+										
+		
+									JOptionPane.showMessageDialog(null,"Changes Saved!");
 								}
 							}
 							   

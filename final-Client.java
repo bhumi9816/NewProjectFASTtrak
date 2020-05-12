@@ -4,18 +4,18 @@ import java.util.*;
 
 public class Client {
 
-	public static void main(String[] args) {
-		
-		DashCustomer c1 = new DashCustomer();
+    public static void main(String[] args) {
+        
+        DashCustomer c1 = new DashCustomer();
 
-		System.out.println("Welcome to FastTrak");
+        System.out.println("Welcome to FastTrak");
 
  //stimulated database keeping track of all the usernames & passwords
-		Dictionary<String, String> customerLoginInfo = new Hashtable<String, String>();
-		
-		
+        Dictionary<String, String> customerLoginInfo = new Hashtable<String, String>();
+        
+        
 //stimulated database keeping track of all client info using an array
-		Dictionary<String, List<String>> customerInfo = new Hashtable<String, List<String>>();
+        Dictionary<String, List<String>> customerInfo = new Hashtable<String, List<String>>();
 
         //asking for Login or Create Account
         Scanner status = new Scanner(System.in);  
@@ -27,15 +27,15 @@ public class Client {
         //current customer Log-in Page
         
         if(choice.equals("L")){
-        	LoginInfo(customerLoginInfo, c1);
+            LoginInfo(customerLoginInfo, c1);
                          
         } 
         
 
         //new customer
         else if(choice.equals("C")){
-        	
-        	System.out.println("First name: ");
+            
+            System.out.println("First name: ");
             String first_n = status.nextLine();
 
             System.out.println("Last name: " );
@@ -77,54 +77,54 @@ public class Client {
            LoginInfo(customerLoginInfo, c1);
            
            
-           	
+            
            //Once the userId and Password matches the stimulated Database, takes us to the HomePage
            
            /*Note: Code needs to be implemented that will search through the stimulated database to find the correct
             * client with the given ID and password*/
-       	   
+           
            
         }
         
         System.out.println("HOME_PAGE");
-		
+        
         System.out.println("Choose from the below OPTIONS");
-     	        		
+                        
         System.out.println("A. VehicleInfo\t B. ADD PaymentInfo\t C. EDIT\t D. VIEW CUSTOMER INFO");
         
         String ans = status.nextLine();
         
         if(ans.equals("A")) {
-        	
-        	
-        	
+            
+            
+            
         }
         
         status.close();
         status1.close();
 
-	}
-	
-	public static void LoginInfo(Dictionary<String, String> cInfo, DashCustomer c) {
-		
-		
-		Scanner status = new Scanner(System.in);  
+    }
+    
+    public static void LoginInfo(Dictionary<String, String> cInfo, DashCustomer c) {
+        
+        
+        Scanner status = new Scanner(System.in);  
         Scanner status1 = new Scanner(System.in);
-		
-		System.out.println("Enter UserId: ");
+        
+        System.out.println("Enter UserId: ");
         String customer_id = status.nextLine();
 
         boolean checkId = c.checkUserId(customer_id);
         
 
         while(checkId != true) {
-        	System.out.println("Error!!");
-        	
-        	System.out.println("Enter Valid UserId: ");
+            System.out.println("Error!!");
+            
+            System.out.println("Enter Valid UserId: ");
             customer_id = status.nextLine();
 
             checkId = c.checkUserId(customer_id);
-        	
+            
         }
         
         System.out.println("Correct ID");
@@ -136,25 +136,25 @@ public class Client {
         boolean checkPassword = c.checkPassword(customer_password);
         
         while(checkPassword != true) {
-        	System.out.println("Error!!");
-        	
-        	System.out.println("Enter Valid Password: ");
+            System.out.println("Error!!");
+            
+            System.out.println("Enter Valid Password: ");
             customer_password = status.nextLine();
 
             checkPassword = c.checkPassword(customer_password);
-        	
+            
         }
 
     
         System.out.println("Correct Password");
         
         status.close();
-    	status1.close();
-		
-	}
-	
-	
-	
-	
+        status1.close();
+        
+    }
+    
+    
+    
+    
 
 }
