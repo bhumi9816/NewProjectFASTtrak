@@ -28,14 +28,6 @@ public class Payment {
 		acctBalance = 0.0;
 	}
 	
-	public Payment(String cardNameArg,String cardNumArg, String expDateArg,String ccvArg, String acctBalArg) {
-		cardName = cardNameArg;
-		cardNum = cardNumArg;
-		expDate = expDateArg;
-		ccv = ccvArg;
-		acctBalance = Double.parseDouble(acctBalArg);
-	}
-	
 	public String getCardInfo() {
 		String x = "Card Name: " + cardName + "\nCard Number: " + cardNum + "\nExp Date:" + expDate + "\nCCV:" + ccv + "\nacctBalance:" + acctBalance + "\n";
 //		System.out.println(x);
