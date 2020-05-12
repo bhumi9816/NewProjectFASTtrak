@@ -1,3 +1,5 @@
+//package finalProject.codejava;
+
 import java.util.Scanner;
 import java.util.Date;
 
@@ -31,10 +33,7 @@ public class Payment {
 //		System.out.println(x);
 		return x;
 	}
-	
-//	public void setCardInfo() { 		I need to break this method up for better implimentation
-//		
-//	}
+
 	
 	public String getCardName() {
 		return cardName;
@@ -57,35 +56,27 @@ public class Payment {
 	}
 	
 	public void setCardName(String cardNameArg) {
-//		System.out.println("-Editing Card Name-");
-//		System.out.println("Card Name: ");
-//		String cardNameArg = myScanner.nextLine();
+
 		cardName = cardNameArg;
 
 	}
 	
 	public void setCardNum(String cardNumArg) {
-//		System.out.println("-Editing Card Num-");
-//		System.out.println("Card Number (16 digits): ");
-//		String cardNumArg = myScanner.nextLine();
+
 		cardNum = cardNumArg;
-//		System.out.println("Information updated");
+
 	}
 	
 	public void setExpDate(String expDateArg) {
-//		System.out.println("-Editing Exp Date-");
-//		System.out.println("Exp Date (Follow format....4/20 => 042020): ");
-//		String expDateArg = myScanner.nextLine();
+
 		expDate = expDateArg;
-//		System.out.println("Information updated");
+
 	}
 	
 	public void setCCV(String ccvArg) {
-//		System.out.println("-Editing CCV-");
-//		System.out.println("CCV: ");
-//		String ccvArg = myScanner.nextLine();
+
 		ccv = ccvArg;
-//		System.out.println("Information updated");
+
 	}
 	
 	public String deleteCardInfo() {
@@ -141,22 +132,19 @@ public class Payment {
 		}
 	}
 	
-//	public void schedulePay() { //Unsure if possible, given the time of project deadline
-//		
-//	}
+
 	
 	public void loadAccount(String amt) { //User will reload their acct balance in anticipation of charges in the future
 		double reloadAmount = Double.parseDouble(amt);
 		acctBalance = acctBalance+reloadAmount;
 	}
 	
-	public String receiveCharge() { //System will call this, deducting funds from the account every time user passes through toll bridge
+	public String receiveCharge() { 
 		Final_Fare newFare = new Final_Fare();
 		double finalFareCharge = newFare.finalFare();
-//		System.out.println("Deducting $" + finalFareCharge + " from Account Balance");
-//		System.out.print("Previous account balance: $" + acctBalance + "\n");
+
 		acctBalance = acctBalance-finalFareCharge;
-//		System.out.println("New account balance: $" + acctBalance + "\n");
+
 		String temp = newFare.getFinalDetails();
 		addTransactionHistory(temp);
 		return temp;
@@ -177,4 +165,174 @@ public class Payment {
 		System.out.println("Current Account Balance: $" + acctBalance);
 	}
 }
+
+
+/*
+ * Fields for Base_cost */
+class Base_Cost {
+	private double farePrice;
+	private String location;
+	private int numOfAxles;
+	
+	
+	Base_Cost(){
+		location = "";
+		farePrice = 0.0;
+		baseCost();
+	}
+	
+	public void baseCost() {
+		//Get Axle information
+		
+		int bridgeNum; 
+		bridgeNum = (int)(Math.random()*((7-1)+1)+1);
+		
+		
+		if(bridgeNum == 1) {
+			location = "ANT";
+			farePrice = 6.0;
+		}
+		else if(bridgeNum == 2) {
+			location = "BEN";
+			farePrice = 6.0;
+		}
+		else if(bridgeNum == 3) {
+			location = "CAR";
+			farePrice = 6.0;
+		}
+		else if(bridgeNum == 4) {
+			location = "DUM";
+			farePrice = 6.0;
+		}
+		else if(bridgeNum == 5) {
+			location = "RIC";
+			farePrice = 6.0;
+		}
+		else if(bridgeNum == 6) {
+			location = "SFO";
+			farePrice = 6.0;
+		}
+		else if(bridgeNum == 7) {
+			location = "SMH";
+			farePrice = 6.0;
+		}
+		else { 
+			location = "ERR";
+			farePrice = 0.0;
+		}
+	}
+	
+	public String getLocation() {
+		return location;
+	}
+	
+	public double getBaseCost() {
+		return farePrice;
+	}
+	
+}
+
+/*
+ * Fields of Discount*/
+
+class Discount {
+	private int numPassengers;
+	private boolean rushHour;
+	private double discountAmount;
+	private boolean carPoolFlag = false;
+	private boolean rushHourFlag = false;
+	private Scanner myScanner = new Scanner(System.in);
+	private Scanner myScanner2 = new Scanner(System.in);
+	Discount(){
+		numPassengers = 0;
+		rushHour = true;
+		
+		discountAmount = 0;
+		discount();
+	}
+	
+	public void discount() {
+
+		numPassengers = (int) (Math.random()*(3-1+1)+1);
+
+		
+		if(numPassengers>=2) {
+//			System.out.println("Carpool discount applied: -$2.00 from total fare");
+			discountAmount += -2.0;
+			carPoolFlag = true;
+		}
+		else {
+//			System.out.println("No carpool discount applied. Not enough passengers for carpool.");
+		}
+		
+
+		int tempInput = (int)(Math.random()*(1-0+0)+0);
+
+		if(tempInput==1) {
+			rushHour = true;
+		}
+		else{
+			rushHour = false;
+		}
+		
+		if(!rushHour) {
+//			System.out.println("Rush hour discount applied: -$2.00 from total fare");
+			discountAmount += -2.0;
+			rushHourFlag = true;
+		}
+		else {
+//			System.out.println("No Rush hour discount applied. It is currently rush hour.");
+		}
+		
+	}
+	public double getDiscount() {
+		return discountAmount;
+	}
+	public String getDiscountDetails() {
+		String temp = "Discounts applied: \n";
+		if(carPoolFlag) {
+			temp+= "Carpool discount applied\n";
+		}
+		if(rushHourFlag) {
+			temp+="Rush hour discount applied\n";
+		}
+		return temp;
+	}
+	
+}
+
+
+
+/*
+ * Fields of Final_Fare */
+
+class Final_Fare {
+	
+	//Used to figure out final cost
+	private Discount discount1;
+	private Base_Cost basecost1;
+	private double finalAmountToBeCharged;
+	Final_Fare(){
+		basecost1 = new Base_Cost();
+		discount1 = new Discount();
+	}
+	
+	public double finalFare() {
+		finalAmountToBeCharged = basecost1.getBaseCost()+discount1.getDiscount();
+		return finalAmountToBeCharged;
+	}
+	
+	public String getFinalDetails() {
+		String temp = "New Transaction: Crossed at " + basecost1.getLocation() + ". Base Cost is: $" + basecost1.getBaseCost() + "\n";
+		temp += discount1.getDiscountDetails();
+		temp += "Discount amount: " + discount1.getDiscount()+"\n";
+		temp += "\nFinal Cost for Trip: $"+finalAmountToBeCharged+"\n"+"\n";
+		return temp;
+	}
+}
+
+
+
+
+
 

@@ -1,8 +1,9 @@
-package finalProject.codejava;
+//package finalProject.codejava;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 import javax.swing.*;
@@ -89,7 +90,7 @@ public class ClientGUI extends Payment implements ActionListener {
 				a_s1 = new JTextField();
 				a_s1.setBounds(100, 210, 160, 20);
 				
-				//Extra space for address: N/A if not using to write
+				//Extra space for address:
 				JTextField a_s11 = new JTextField();
 				a_s11.setBounds(100, 240, 140, 20);
 				
@@ -144,6 +145,14 @@ public class ClientGUI extends Payment implements ActionListener {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						if(f_name.getText().isEmpty() && l_name.getText().isEmpty() && a_s1.getText().isEmpty() &&
+								a_s2.getText().isEmpty() && city.getText().isEmpty() && zip_code.getText().isEmpty() &&
+								cell_phone.getText().isEmpty() && e_mail.getText().isEmpty()) {
+							
+							//add JOption Pane to show error message
+							System.out.println("Enter valid Info");
+						}
+							
 						JFrame n_1 = new JFrame("Create Account");
 						n_1.getContentPane().setBackground(Color.BLACK);
 						
@@ -154,7 +163,7 @@ public class ClientGUI extends Payment implements ActionListener {
 						u.setBounds(110, 20, 102, 20);
 						
 						JTextField user = new JTextField();
-						user.setBounds(100, 55, 102, 20);
+						user.setBounds(100, 55, 112, 20);
 						
 						
 						//setting up client password
@@ -173,6 +182,8 @@ public class ClientGUI extends Payment implements ActionListener {
 						DashCustomer client = new DashCustomer(user.getText(), f_name.getText(), l_name.getText(),
 								e_mail.getText(), true);
 						
+						client.loadData(user.getText(), pass.getText());
+						
 						
 						
 						JButton next1 = new JButton("Next");
@@ -181,7 +192,8 @@ public class ClientGUI extends Payment implements ActionListener {
 
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								if(user.getText().isEmpty() && pass.getText().isEmpty()) {
+								if(user.getText().isEmpty() && pass.getText().isEmpty()
+										&& client.checkUserId(user.getText()) && client.checkPassword(pass.getText())) {
 									System.out.println("Input Valid Info");
 									
 								}
@@ -282,37 +294,199 @@ public class ClientGUI extends Payment implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Invalid Info");
-				String u_name = ans.getText();
-				
+					
+				String u_name = ans.getText();			
 				String p_name = ans1.getText();
 				
 				DashCustomer c = new DashCustomer();
+				Address a_c1 = new Address();
 				
-				if(c.checkUserId(u_name) == true && c.checkPassword(p_name)) {
-					JFrame n_window = new JFrame("Home Page");
-					n_window.getContentPane().setBackground(Color.BLACK);
+				if(c.checkData(u_name, p_name)) {
+					//connect with the hub and allow to talk to other GUI classes like vehicle and payment
+					//new Hub();
 					
-					JLabel c1 = new JLabel("Welcome Bhumi");
-					c1.setFont(new Font("Serif", Font.ITALIC, 15));
-					c1.setForeground(Color.GREEN);
-					c1.setBounds(50, 8, 130, 100);
+					JFrame frame=new JFrame("HOME PAGE");  //home page
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+					frame.getContentPane().setBackground(Color.BLACK);
 					
-					/*
-					 * Text Area about Client Info, Button to Vehicle Info, Payment Button*/
+					Vehiclecopy vehicle1= new Vehiclecopy(); 
+					Payment payment1 = new Payment();
 					
-					JButton b1 = new JButton("Vehicle Info");
-					JButton b2 = new JButton("Payment Info");
+					 //View Vehicle Info
+					   JButton button1=new JButton("View Vehicle Info"); 
+					   button1.setBounds(20,20,150,30);
+					   frame.add(button1);
+					   button1.addActionListener
+					   (
+							   new ActionListener() {
+								   public void actionPerformed(ActionEvent e)
+								   {
+									   JOptionPane.showMessageDialog(null,vehicle1.getVehicleInfo());
+								   }
+							   }	   
+							   
+					   );
+					   
+					   
+					   //View Payment Options
+					   JButton button2=new JButton("Payment Options");
+					   frame.add(button2);
+					   button2.setBounds(180,20,150,30);
+					   button2.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							try {
+								PaymentGUI paymentWindow = new PaymentGUI(payment1,u_name);
+							} catch (FileNotFoundException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						   
+					   });
+					   
+					   JButton button3=new JButton("View Personal Info ");
+					   frame.add(button3);
+					   button3.setBounds(340,20,150,30); 
+					   button3.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							
+							//View personal info
+							JOptionPane.showMessageDialog(null, c.ViewInfo(u_name));						
+										
+						}
+						   
+					   });
+					   
+					 //Add/Edit Vehicle Info
+					   JButton button4= new JButton("Edit Vehicle Info");
+					   frame.add(button4);
+					   button4.setBounds(500,20,200,30);  
+					   button4.addActionListener
+					   (
+							new ActionListener()
+							{
+								public void actionPerformed(ActionEvent e)
+								{
+									//License Plate Number
+									String licensePlate= JOptionPane.showInputDialog("Enter the License Plate NUmber of your car (it should be 7 Apha-Numeric): ");
+									vehicle1.setLicense_Plate(licensePlate);
+									
+									//company name
+									String make=JOptionPane.showInputDialog("Enter the make of the car: ");
+									vehicle1.setMake(make);
+									
+									//model of the car
+									String model= JOptionPane.showInputDialog("Enter the model of your car: ");
+									vehicle1.setModel(model);
+									
+									int year= Integer.parseInt(JOptionPane.showInputDialog("Enter the year of your car: "));
+									vehicle1.setYear(year);
+									
+									String color= JOptionPane.showInputDialog("Enter the color of the car: ");
+									vehicle1.setColor(color);
+									
+									int num= Integer.parseInt(JOptionPane.showInputDialog("Enter the number of pair of axles of your car, to know the size of your car (atleast two pairs): "));
+									vehicle1.setAxles(num);
+									
+									boolean clean= Boolean.parseBoolean(JOptionPane.showInputDialog("Is your Vehicle clean?(true/false): "));
+									vehicle1.setClean(clean);
+
+								}
+							}
+							   
+					   );
+					   
+					   JButton button5=new JButton("Delete Vehicle");
+					   frame.add(button5);
+					   button5.setBounds(150,60,150,30); 
+					   button5.addActionListener(new ActionListener() {
+
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								vehicle1.deleteVehicle();
+
+							}
+							   
+						});
+					  
+					   
+					   
+					   JButton button6 = new JButton("Edit Personal Info");
+					   frame.add(button6);
+					   button6.setBounds(350,60,150,30);
+					   button6.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							//First Name
+							String f_name = JOptionPane.showInputDialog("Enter First Name: ");
+							c.setFname(f_name);
+							
+							//Last Name
+							String l_name =JOptionPane.showInputDialog("Enter Last Name: ");
+							c.setLname(l_name);
+							
+							//Email
+							String e_mail = JOptionPane.showInputDialog("Enter email: ");
+							c.setEmail(e_mail);
+							
+							//phone number
+							String p = JOptionPane.showInputDialog("Enter phone-number: ");
+							c.setPhoneNum(Integer.parseInt(p));
+							
+							//Address-Street Name
+							String a_sname = JOptionPane.showInputDialog("Enter Street Name:  ");
+							a_c1.setStreetName(a_sname);
+							
+							//Address-Street Num
+							String a_snum = JOptionPane.showInputDialog("Enter Street Num/Apt: ");
+							a_c1.setStreetNum(Integer.parseInt(a_snum));
+							
+							//Zip-code
+							String a_zip = JOptionPane.showInputDialog("Enter Zip-Code: ");
+							a_c1.setZipCode(Integer.parseInt(a_zip));
+							
+											
+							
+						}
+						   
+					   });
+					   
+					   
+					   
+					   JButton button8=new JButton("Sign Out");
+					   frame.add(button8);
+					   button8.addActionListener(new ActionListener() {
+
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							JFrame n_f = new JFrame("LogOut Window");
+							
+							n_f.setSize(200, 200);
+							n_f.setLayout(null);
+							n_f.setLocationRelativeTo(null);
+							n_f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+							n_f.setVisible(true);
+							
+						}
+						   
+					   });
+					   
+					   frame.setSize(800,200);
+					   frame.setLocationRelativeTo(null);
+					   frame.setLayout(null);  
+					   frame.setVisible(true);
 					
 					
-					n_window.add(c1); n_window.add(b1); n_window.add(b2);
-					
-					
-					
-					n_window.setSize(400, 200);
-					n_window.setLayout(null);
-					n_window.setLocationRelativeTo(null);
-					n_window.setVisible(true);
+				}
+				
+				else {
+					//Add a JOptionPane showmessageDialogue...
+					System.out.println("Invalid Info");
 					
 				}
 				

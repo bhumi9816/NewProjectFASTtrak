@@ -1,8 +1,9 @@
 
 //import java.util.*;
 
+import java.util.*;
 
-public class Vehicle
+public class Vehiclecopy
 {
 	private String dashID;
 	
@@ -16,9 +17,10 @@ public class Vehicle
 	private String liscPlate;
 	private boolean cleanV;
 	private int num_of_vehicle;
+	private String c_name;
 	
 
-	public Vehicle() 
+	public Vehiclecopy() 
 	{
 		this.dashID=" ";	
 		this.make=" ";	
@@ -31,7 +33,7 @@ public class Vehicle
 		this.num_of_vehicle=0;
 	}
 
-	public Vehicle(String dID, String m, String mdl, int y, String col, String lp,boolean cv, int num, int ax)
+	public Vehiclecopy(String dID, String m, String mdl, int y, String col, String lp,boolean cv, int num, int ax)
 	{
 
 		this.dashID=" ";	
@@ -44,31 +46,37 @@ public class Vehicle
 		this.cleanV=true;	
 		this.num_of_vehicle=0;
 
+	}
+	
+	public Vehiclecopy(String m, String mdl, int y, String lp, String col, int ax) {
+		this.make = m;
+		this.model = mdl;
+		this.year = y;
+		this.liscPlate = lp;
+		this.color = col;
+		this.axles = ax;
 	}
 	
 	public void setVehicleInfo(String dID, String m, String mdl, int y, String col, String lp,boolean cv, int num, int ax)
 	{
-		dashID=dID;
-		model=mdl;
-		color=col;
-		year=y;
-		liscPlate=lp;
-		cleanV=cv;
-		num_of_vehicle=num;
-		axles=ax;
-		make=m;
+		this.dashID=dID;
+		this.model=mdl;
+		this.color=col;
+		this.year=y;
+		this.liscPlate=lp;
+		this.cleanV=cv;
+		this.num_of_vehicle=num;
+		this.axles=ax;
+		this.make=m;
 		
 	}
 
 	public String getVehicleInfo() 
 	{
-		return "DashID: " + dashID + "\nBrand: "+ make + "\nModel: " + model + "\nYear: " + year + "\nColor: " + color + "\nAxles" + axles + "\nLicense Plate: "+ liscPlate + "\nClean Vehicle: "+  cleanV;
+		String temp = "Make: " + make + "\nModel: "+ model + "\nColor: " + color + "\nYear: " + year + "\nLicense Plate: " + liscPlate + "\nClean Vehicle: " + cleanV + "\nNum Axles: " + axles +"\n"; 
+		return temp;
 	}
 
-	public void setAxles(int ax)
-	{
-		this.axles=ax;
-	}
 	
 	public int getaxles()
 	{
@@ -106,7 +114,7 @@ public class Vehicle
 	}
 	
 	
-	public void deleteVehicle(String dID) 
+	public void deleteVehicle() 
 	{
 		this.make=" ";	
 		this.year=0;
@@ -116,6 +124,43 @@ public class Vehicle
 		this.liscPlate=" ";
 		this.cleanV=true;	
 		this.num_of_vehicle=0;
+	}
+	
+	//Setters
+	public void setMake(String compname) {
+		this.make = compname;
+		
+	}
+
+	public void setLicense_Plate(String licensePlate) {
+		this.liscPlate = licensePlate;
+	}
+	
+	public void setModel(String modelArg) {
+		this.model = modelArg;
+	}
+	
+	public void setYear(int yearArg) {
+		this.year = yearArg;
+	}
+	
+	public void setColor(String colorArg) {
+		this.color = colorArg;
+	}
+	
+	public void setAxles(int axleArg) {
+		this.axles = axleArg;
+	}
+	
+	public void setClean(boolean cleanArg) {
+		this.cleanV = cleanArg;
+	}
+	public String getMake() {
+		return this.c_name;
+	}
+	
+	public String getLp() {
+		return this.liscPlate;
 	}
 
 
