@@ -1,3 +1,5 @@
+package test;
+
 
 
 //import java.util.*;
@@ -82,6 +84,7 @@ public class Vehiclecopy
 		this.axles=ax;
 		this.make=m;	
 	}
+	
 	
 	public void set_Dashid(String dID)
 	{
