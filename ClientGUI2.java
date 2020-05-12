@@ -15,6 +15,9 @@ public class ClientGUI2 {
 	
 	JTextField f_name, l_name, a_s1, a_s2, city, zip_code, cell_phone, e_mail;
 	JTextField user; JTextField pass;
+	JTextField m, model, y, l_plate, c_1, a;
+	JTextField c_name, c_num, exp_d, cvv;
+	
 	DashCustomer client; Payment payInfo; Vehiclecopy v1;
 	
 
@@ -178,7 +181,7 @@ public class ClientGUI2 {
 						
 						else {
 							/* VEHICLE INFO: */
-							JTextField m, model, y, l_plate, c, a;
+							
 							
 							JFrame Vehicle_info = new JFrame("Vehicle_Info");
 							Vehicle_info.getContentPane().setBackground(Color.BLACK);
@@ -225,8 +228,8 @@ public class ClientGUI2 {
 							v_color.setForeground(Color.GREEN);
 							v_color.setBounds(40, 164, 100, 100);
 							
-							c = new JTextField();
-							c.setBounds(140, 203, 140, 20);
+							c_1 = new JTextField();
+							c_1.setBounds(140, 203, 140, 20);
 							
 							v_axles = new JLabel("No. of Axles: ");
 							v_axles.setFont(new Font("Serif", Font.BOLD, 13));
@@ -246,7 +249,7 @@ public class ClientGUI2 {
 									//checking if the vehicle fields are not empty
 									
 									if(m.getText().isEmpty() && model.getText().isEmpty() && y.getText().isEmpty() && 
-											l_plate.getText().isEmpty() && c.getText().isEmpty() && a.getText().isEmpty()) {
+											l_plate.getText().isEmpty() && c_1.getText().isEmpty() && a.getText().isEmpty()) {
 										
 										JFrame alert_f2 = new JFrame();
 										JOptionPane.showMessageDialog(alert_f2, "INVALID INFO!! TRY AGAIN", "Error message", JOptionPane.ERROR_MESSAGE);
@@ -275,7 +278,7 @@ public class ClientGUI2 {
 										
 										JLabel cardName, cardNumber, expire_date, CVV;
 										
-										JTextField c_name, c_num, exp_d, cvv;
+										
 										
 										cardName = new JLabel("Bank Name: ");
 										cardName.setFont(new Font("Serif", Font.BOLD, 13));
