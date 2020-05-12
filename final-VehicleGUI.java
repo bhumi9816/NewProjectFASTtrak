@@ -1,4 +1,4 @@
-package finalProject.codejava;
+//package finalProject.codejava;
 
 import java.awt.*;
 import javax.swing.*;
@@ -113,10 +113,7 @@ public class VehicleGUI implements ActionListener {
 			//creating Vehicle object and passing Vehicle info in the constructor
 			
 			Vehiclecopy v1 = new Vehiclecopy(m.getText(), model.getText(), Integer.parseInt(y.getText()),
-					l_plate.getText(), c.getText(), Integer.parseInt(a.getText()));
-			
-			new PaymentGUI();
-		
+					l_plate.getText(), c.getText(), Integer.parseInt(a.getText()));		
 		
 		}
 		

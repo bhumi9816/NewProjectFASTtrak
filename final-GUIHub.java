@@ -11,7 +11,7 @@ public class GUIHub extends JFrame implements ActionListener
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		Vehicle vehicle1= new Vehicle(); 
+		Vehiclecopy vehicle1= new Vehiclecopy(); 
 		
 		 //View Vehicle Info
 		   JButton button1=new JButton("View Vehicles "); 
@@ -87,7 +87,7 @@ public class GUIHub extends JFrame implements ActionListener
 		   frame.add(button5);
 		   button5.setBounds(150,60,150,30); 
 		   
-		   vehicle1.deleteVehicle("19445");
+		   vehicle1.deleteVehicle();
 	
 		   
 		   JButton button6=new JButton("Sign Out");
