@@ -1,5 +1,5 @@
 # CS401_SEP
-Software Engineering Project: Electronic Toll Collection System, "Dash" - Mazie Xylyn | Melinda | Sitara
+Software Engineering Project: Electronic Toll Collection System, "Dash"
 
 Overview
 --------
