@@ -1,5 +1,5 @@
-# CS401_SEP
-Software Engineering Project: Electronic Toll Collection System, "Dash"
+# Fastrak Simulation: Dash
+CS 401 Software Engineering Project
 
 Overview
 --------
